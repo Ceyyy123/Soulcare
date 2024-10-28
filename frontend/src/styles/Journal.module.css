@@ -1,0 +1,240 @@
+.journalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+.navbar {
+  width: 100%;
+  background-color: #1a2a6c;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a,
+.logoutButton {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.logoutButton {
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  display: inline-block;
+  border-radius: 4px;
+}
+.navbar {
+  width: 100%;
+  background-color: #1a2a6c;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.logoutButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.journalContent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.journalForm {
+  flex: 1;
+  margin-right: 20px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.journalEntries {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.journalEntry {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1a2a6c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #3c6aff;
+}
+
+.deleteButton {
+  background-color: #ff4b5c;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  height: 30px;
+  line-height: 1;
+  width: 80px;
+}
+
+.deleteButton:hover {
+  background-color: #e03e4e;
+}
+
+.footer {
+  width: 100%;
+  background-color: #1a2a6c;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerSection {
+  flex: 1;
+  margin: 20px;
+  min-width: 200px;
+}
+
+.footerSection h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerSection ul li {
+  margin-bottom: 10px;
+}
+
+.footerSection ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footerSection ul li a:hover {
+  text-decoration: underline;
+}
+
+.footerLogo {
+  max-width: 100px;
+  margin-bottom: 10px;
+  margin: 0 auto;
+}
+
+.footerBottom {
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px solid #ffffff40;
+  margin-top: 20px;
+}
+
+.footerBottom p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.notAuthenticated {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.notAuthenticated a {
+  background-color: #1a2a6c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.notAuthenticated a:hover {
+  background-color: #3c6aff;
+}

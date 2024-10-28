@@ -1,0 +1,52 @@
+.footer {
+    background-color: #1a2a6c;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footerSection {
+    flex: 1;
+    margin: 20px;
+    min-width: 200px; /* Minimum width für kleine Bildschirme */
+    text-align: center;
+}
+
+.footerLogo {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footerSection h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.footerSection ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footerSection ul li {
+    margin-bottom: 10px;
+}
+
+.footerSection ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footerSection ul li a:hover {
+    text-decoration: underline;
+}

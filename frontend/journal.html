@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulCare Tagebuch</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 150px; margin-top: 10px; padding: 10px; border-radius: 5px; }
+        button { padding: 10px 20px; background-color: #28a745; color: #fff; border: none; border-radius: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Wie geht es Ihnen heute?</h2>
+        <textarea id="journalEntry"></textarea>
+        <button onclick="saveEntry()">Speichern</button>
+    </div>
+
+    <script>
+        function saveEntry() {
+            const entry = document.getElementById('journalEntry').value;
+            fetch('/journal', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ entry })
+            }).then(response => response.json()).then(data => {
+                alert(data.message);
+            });
+        }
+    </script>
+</body>
+</html>
