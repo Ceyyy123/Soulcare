@@ -5,7 +5,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 import styles from '../styles/Journal.module.css';
-import 'react-datepicker/dist/react-datepicker.css';
 
 
 const Navbar = () => {
