@@ -1,8 +1,9 @@
-import React from 'react';
+import React from 'react'; 
 import Link from 'next/link';
-import { useAuth } from './AuthContext'; // Korrigierter Pfad
+import { useAuth } from './AuthContext'; 
 import '../styles/Navbar.module.css';
-
+import '../styles/Footer.module.css';
+import '../styles/Home.module.css';
 
 const logo = '/logo.png';
 
@@ -10,22 +11,20 @@ const Navbar = () => {
     const { isAuthenticated, logout } = useAuth();
 
     return (
-      <nav className="navbar">
-          <img src={logo} alt="SoulCare Logo" className="logo" />
-          <ul className="nav-links">
-              {!isAuthenticated ? (
-                  <>
-                      <li><Link href="/login"><a style={{  color: 'white', padding: '8px 16px', borderRadius: '5px', textDecoration: 'none' }}>Anmelden</a></Link></li>
-<li><Link href="/signup"><a style={{  color: 'white', padding: '8px 16px', borderRadius: '5px', textDecoration: 'none' }}>Registrieren</a></Link></li>
-
-                  </>
-              ) : (
-                  <li><button onClick={logout} className="nav-button logout-button">Abmelden</button></li>
-              )}
-          </ul>
-      </nav>
-  );
-  
+        <nav className="navbar">
+            <img src={logo} alt="SoulCare Logo" className="logo" />
+            <ul className="nav-links">
+                {!isAuthenticated ? (
+                    <>
+                        <li><Link href="/login"><a className="nav-link">Anmelden</a></Link></li>
+                        <li><Link href="/signup"><a className="nav-link">Registrieren</a></Link></li>
+                    </>
+                ) : (
+                    <li><button onClick={logout} className="nav-button logout-button">Abmelden</button></li>
+                )}
+            </ul>
+        </nav>
+    );
 };
 
 const Footer = () => {
@@ -39,8 +38,8 @@ const Footer = () => {
                 <div className="footerSection">
                     <h4>Kontakt</h4>
                     <ul>
-                        <li><Link href="/about"><a>Über Uns</a></Link></li>
-                        <li><Link href="/impressum"><a>Impressum</a></Link></li>
+                        <li><Link href="/about"><a className="footer-link">Über Uns</a></Link></li>
+                        <li><Link href="/impressum"><a className="footer-link">Impressum</a></Link></li>
                     </ul>
                 </div>
             </div>
