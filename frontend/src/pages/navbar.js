@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useAuth } from './AuthContext'; // Pfad zum AuthContext
+import { useAuth } from '../AuthContext'; // Pfad zum AuthContext
 import styles from '../styles/Navbar.module.css'; // CSS-Modul für die Navbar
 
 const Navbar = () => {

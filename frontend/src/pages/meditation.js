@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useAuth } from './AuthContext'; // Stelle sicher, dass der Pfad zu deiner AuthContext-Datei korrekt ist
+import { useAuth } from '../AuthContext'; // Stelle sicher, dass der Pfad zu deiner AuthContext-Datei korrekt ist
 import Navbar from './navbar'; // Korrigierter Pfad zur Navbar-Komponente
 import Footer from './footer'; // Korrigierter Pfad zur Footer-Komponente
 import styles from '../styles/Meditation.module.css'; // Angenommen, du verwendest CSS-Module
