@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../AuthContext';
 import Navbar from './navbar'; // Korrigierter Pfad zur Navbar-Komponente
 import Footer from './footer'; // Korrigierter Pfad zur Footer-Komponente
 import styles from '../styles/Resources.module.css'; // Korrigierter Pfad zur CSS-Datei

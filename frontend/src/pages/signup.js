@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { registerUser } from '../authService';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../AuthContext';
 import Link from 'next/link';
 
 const Signup = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useAuth } from './AuthContext'; 
+import { useAuth } from '../AuthContext'; 
 import styles from '../styles/Quote.module.css';
 import Navbar from './navbar'; 
 import Footer from './footer'; 

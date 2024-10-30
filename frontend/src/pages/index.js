@@ -1,6 +1,6 @@
 import React from 'react'; 
 import Link from 'next/link';
-import { useAuth } from './AuthContext'; 
+import { useAuth } from '../AuthContext'; 
 import '../styles/Navbar.module.css';
 import '../styles/Footer.module.css';
 

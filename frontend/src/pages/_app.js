@@ -1,6 +1,6 @@
 // src/pages/_app.js
 import '../styles/globals.css';  // Falls diese Datei existiert und globale Stile enthält
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from '../AuthContext';
 import '../styles/form.css'; 
 import '../styles/About.module.css';
 
