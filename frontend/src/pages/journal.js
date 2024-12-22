@@ -6,7 +6,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 import styles from '../styles/Journal.module.css';
 
-
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const logo = '/logo.png';
@@ -66,21 +65,19 @@ const Journal = () => {
 
   const fetchEntries = async (selectedDate) => {
     try {
-        const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
-        const response = await fetch(`http://localhost:3001/api/journal?date=${formattedDate}`, {
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
-        });
-        if (!response.ok) {
-            throw new Error('Fehler beim Abrufen der Einträge');
-        }
-        const data = await response.json();
-        setEntries(data);
+      const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/journal?date=${formattedDate}`, {
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+      });
+      if (!response.ok) {
+        throw new Error('Fehler beim Abrufen der Einträge');
+      }
+      const data = await response.json();
+      setEntries(data);
     } catch (error) {
-        console.error('Fetch error:', error);
+      console.error('Fetch error:', error);
     }
   };
-  
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,7 +86,7 @@ const Journal = () => {
     const newEntry = { date: formattedDate, content: entry };
 
     try {
-      const response = await fetch('http://localhost:3001/api/journal', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/journal`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -112,7 +109,7 @@ const Journal = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/journal/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/journal/${id}`, {
         method: 'DELETE',
         headers: { 
           'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -128,7 +125,6 @@ const Journal = () => {
       console.error('Delete error:', error);
     }
   };
-  
 
   if (!isAuthenticated) {
     return (
