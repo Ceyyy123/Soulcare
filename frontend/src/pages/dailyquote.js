@@ -63,7 +63,7 @@ const DailyQuote = () => {
     'Lass negative Gedanken los und konzentriere dich auf das Positive in deinem Leben.',
     'Teile deine Gedanken und Gefühle mit einem Freund oder Tagebuch, um Klarheit zu gewinnen.',
     'Bewege dich regelmäßig, um dein Energieniveau zu steigern und Stress abzubauen.',
-    'Vermeide es, den Tag mit deinem Handy zu beginnen – nimm dir stattdessen Zeit für dich.',
+    'Vermeide es, den Tag mit deinem Handy zu beginnen. Nimm dir stattdessen Zeit für dich.',
     'Genieße eine Tasse Tee oder Kaffee in Ruhe, ohne Ablenkungen.',
     'Verbringe Zeit mit einem Haustier, um dich zu entspannen und glücklich zu fühlen.',
   ];

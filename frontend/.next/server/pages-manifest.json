@@ -3,5 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/dailyquote": "pages/dailyquote.js"
+  "/meditation": "pages/meditation.js",
+  "/journal": "pages/journal.js",
+  "/impressum": "pages/impressum.js"
 }
