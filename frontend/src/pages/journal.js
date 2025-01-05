@@ -35,23 +35,43 @@ const Journal = () => {
   const fetchEntries = async (selectedDate) => {
     try {
       const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
-      const url = `${process.env.NEXT_PUBLIC_API_URL}/journal?date=${formattedDate}`;
-      console.log(url); // Debugging: URL überprüfen
-      const response = await fetch(url, {
-        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const token = localStorage.getItem('token');
+  
+      // Debug-Logs
+      console.log("API URL:", apiUrl);
+      console.log("Datum:", formattedDate);
+      console.log("Token:", token);
+  
+      // Überprüfen, ob API-URL und Token vorhanden sind
+      if (!apiUrl) throw new Error("NEXT_PUBLIC_API_URL ist nicht gesetzt");
+      if (!token) throw new Error("Token fehlt im localStorage");
+  
+      // API-Aufruf
+      const response = await fetch(`${apiUrl}/journal?date=${formattedDate}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-
+  
+      // Fehlerbehandlung
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Fehler: ${response.status}, Details: ${errorText}`);
         throw new Error('Fehler beim Abrufen der Einträge');
       }
-
+  
+      // JSON-Daten verarbeiten
       const data = await response.json();
-      setEntries(data);
+      console.log("Daten:", data);
+      return data;
+  
     } catch (error) {
-      console.error('Fetch error:', error);
+      console.error("Fehler:", error.message);
+      throw error;
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formattedDate = moment(date).format('YYYY-MM-DD');
