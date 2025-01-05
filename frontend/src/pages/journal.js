@@ -35,7 +35,9 @@ const Journal = () => {
   const fetchEntries = async (selectedDate) => {
     try {
       const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/journal?date=${formattedDate}`, {
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/journal?date=${formattedDate}`;
+      console.log(url); // Debugging: URL überprüfen
+      const response = await fetch(url, {
         headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
       });
 
@@ -56,7 +58,9 @@ const Journal = () => {
     const newEntry = { date: formattedDate, content: entry };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/journal`, {
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/api/journal`;
+      console.log(url); // Debugging: URL überprüfen
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -79,7 +83,9 @@ const Journal = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/journal/${id}`, {
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/api/journal/${id}`;
+      console.log(url); // Debugging: URL überprüfen
+      const response = await fetch(url, {
         method: 'DELETE',
         headers: { 
           'Authorization': 'Bearer ' + localStorage.getItem('token')
