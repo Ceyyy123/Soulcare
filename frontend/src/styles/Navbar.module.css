@@ -1,119 +1,114 @@
+/* Navbar */
 .navbar {
-    width: 100%;
-    background-color: #1a2a6c;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navLinks {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navLinks a,
-  .logoutButton {
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-  }
-  
-  .logoutButton {
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    display: inline-block;
-    border-radius: 4px;
-  }
-  .navbar {
-    width: 100%;
-    background-color: #1a2a6c;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 50px;
-  }
-  
-  .navLinks {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .logoutButton {
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
+  width: 100%;
+  background-color: #1a2a6c;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
+}
 
+.logo {
+  height: 50px;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks a,
+.logoutButton {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.navLinks a:hover,
+.logoutButton:hover {
+  background-color: #3b4c8d; /* Hellere Farbe beim Hover */
+}
+
+.logoutButton {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Spezielle Buttons für "Anmelden" und "Registrieren" */
+.navLinks .nav-link {
+  background-color: #4b6fb0;
+  padding: 12px 25px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navLinks .nav-link:hover {
+  background-color: #3b4c8d;
+}
+
+/* Footer */
 .footer {
-    background-color: #1a2a6c;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
+  background-color: #1a2a6c;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .footer .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .footerSection {
-    flex: 1;
-    margin: 20px;
-    min-width: 200px;
-    text-align: center;
+  flex: 1;
+  margin: 20px;
+  min-width: 200px;
+  text-align: center;
 }
 
 .footerLogo {
-    max-width: 80px;
-    height: auto;
-    margin-bottom: 10px;
+  max-width: 80px;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .footerSection h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .footerSection ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footerSection ul li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .footerSection ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .footerSection ul li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

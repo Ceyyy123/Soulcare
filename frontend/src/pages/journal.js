@@ -4,74 +4,45 @@ import { useAuth } from '../AuthContext';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
+import { useRouter } from 'next/router';
+import Navbar from './navbar';
+import Footer from './footer';
 import styles from '../styles/Journal.module.css';
 
-const Navbar = () => {
-  const { isAuthenticated, logout } = useAuth();
-  const logo = '/logo.png';
-
-  return (
-    <nav className={styles.navbar}>
-      <img src={logo} alt="SoulCare Logo" className={styles.logo} />
-      <ul className={styles.navLinks}>
-        <li>
-          <Link href="/" passHref>
-            <a>Zur Startseite</a>
-          </Link>
-        </li>
-        {isAuthenticated && (
-          <li>
-            <button onClick={logout} className={styles.logoutButton}>
-              Abmelden
-            </button>
-          </li>
-        )}
-      </ul>
-    </nav>
-  );
-};
-
-const Footer = () => {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.footerSection}>
-          <img src="/logo.png" alt="SoulCare Logo" className={styles.footerLogo} />
-          <p>Ihre Reise zu innerem Frieden und Wohlbefinden beginnt hier</p>
-        </div>
-        <div className={styles.footerSection}>
-          <h4>Kontakt</h4>
-          <ul>
-            <li><Link href="/about"><a>Über Uns</a></Link></li>
-            <li><Link href="/impressum"><a>Impressum</a></Link></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
 const Journal = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const [entry, setEntry] = useState('');
   const [date, setDate] = useState(new Date());
   const [entries, setEntries] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchEntries(date);
+    const { date: queryDate } = router.query;
+    if (isAuthenticated && queryDate) {
+      setDate(new Date(queryDate));
+      fetchEntries(queryDate);
     }
-  }, [date, isAuthenticated]);
+  }, [isAuthenticated, router.query.date]);
 
+  // Wenn sich das Datum ändert, aktualisiere die URL
+  const handleDateChange = (selectedDate) => {
+    const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
+    setDate(selectedDate);
+    router.push(`/journal?date=${formattedDate}`, undefined, { shallow: true });
+  };
+
+  // Einträge vom Server holen
   const fetchEntries = async (selectedDate) => {
     try {
       const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/journal?date=${formattedDate}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/journal?date=${formattedDate}`, {
         headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
       });
+
       if (!response.ok) {
         throw new Error('Fehler beim Abrufen der Einträge');
       }
+
       const data = await response.json();
       setEntries(data);
     } catch (error) {
@@ -81,12 +52,11 @@ const Journal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formattedDate = moment(date).format('YYYY-MM-DD');
     const newEntry = { date: formattedDate, content: entry };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/journal`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/journal`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -109,17 +79,17 @@ const Journal = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/journal/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/journal/${id}`, {
         method: 'DELETE',
         headers: { 
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
       });
-  
+
       if (!response.ok) {
         throw new Error('Fehler beim Löschen des Eintrags');
       }
-  
+
       setEntries(entries.filter(entry => entry._id !== id));
     } catch (error) {
       console.error('Delete error:', error);
@@ -148,7 +118,7 @@ const Journal = () => {
               <label>Datum:</label>
               <DatePicker 
                 selected={date} 
-                onChange={(date) => setDate(date)} 
+                onChange={handleDateChange} 
                 dateFormat="dd.MM.yyyy"
               />
             </div>
@@ -182,6 +152,6 @@ const Journal = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default Journal;

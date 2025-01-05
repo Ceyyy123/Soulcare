@@ -11,10 +11,10 @@ const Meditation = () => {
   if (!isAuthenticated) {
     return (
       <div className={styles.loginPrompt}>
-          <p>Bitte melde dich an, um die Meditation Videos zu sehen.</p>
-          <Link href="/login">
-              <a>Zum Login</a>
-          </Link>
+        <p>Bitte melde dich an, um die Meditation Videos zu sehen.</p>
+        <Link href="/login" passHref>
+          <a className={styles.loginLink}>Zum Login</a>
+        </Link>
       </div>
     );
   }
@@ -24,7 +24,10 @@ const Meditation = () => {
       title: 'Entspannung - Geführte Meditation',
       video: (
         <video controls width="100%">
-          <source src="/videos/video1.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/dwla3jvrl/video/upload/v1735664344/video1_slgvtm.mp4"
+            type="video/mp4"
+          />
         </video>
       ),
       category: 'Entspannung',
@@ -33,7 +36,10 @@ const Meditation = () => {
       title: 'Schlaf - Geführte Meditation',
       video: (
         <video controls width="100%">
-          <source src="/videos/video2.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/dwla3jvrl/video/upload/v1735665260/Video2_ehru2c.mp4"
+            type="video/mp4"
+          />
         </video>
       ),
       category: 'Schlafen',
@@ -42,7 +48,10 @@ const Meditation = () => {
       title: 'Stressabbau - Geführte Meditation',
       video: (
         <video controls width="100%">
-          <source src="/videos/video3.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/dwla3jvrl/video/upload/v1735664377/video3_q9k4hx.mp4"
+            type="video/mp4"
+          />
         </video>
       ),
       category: 'Stressabbau',
@@ -51,7 +60,10 @@ const Meditation = () => {
       title: 'Achtsamkeit - Geführte Meditation',
       video: (
         <video controls width="100%">
-          <source src="/videos/video4.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/dwla3jvrl/video/upload/v1735664396/video4_bv0hbb.mp4"
+            type="video/mp4"
+          />
         </video>
       ),
       category: 'Achtsamkeit',

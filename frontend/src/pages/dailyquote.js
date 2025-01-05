@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useAuth } from '../AuthContext'; 
+import { useAuth } from '../AuthContext';
 import styles from '../styles/Quote.module.css';
-import Navbar from './navbar'; 
-import Footer from './footer'; 
+import Navbar from './navbar';
+import Footer from './footer';
 
 const DailyQuote = () => {
-  const { isAuthenticated } = useAuth(); 
+  const { isAuthenticated } = useAuth();
   const [quote, setQuote] = useState('');
   const [tips, setTips] = useState([]);
 
@@ -89,7 +89,7 @@ const DailyQuote = () => {
 
   return (
     <div>
-      <Navbar /> 
+      <Navbar />
       <div className={styles.quoteContainer}>
         <div className={styles.content}>
           <div className={styles.quoteSection}>
@@ -114,7 +114,7 @@ const DailyQuote = () => {
           </div>
         </div>
       </div>
-      <Footer /> 
+      <Footer />
     </div>
   );
 };
