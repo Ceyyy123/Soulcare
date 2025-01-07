@@ -12,50 +12,13 @@
     text-align: center;
   }
   
-  /* Überschrift */
-  h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-  }
+
   
   /* Fehlernachricht */
   .error {
     color: #ff4d4d;
     margin-bottom: 15px;
     font-size: 14px;
-  }
-  
-  /* Allgemeiner Stil für Formulare */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  /* Label-Styling */
-  label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
-  }
-  
-  /* Input-Felder */
-  input {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-  }
-  
-  /* Fokus auf Input-Feldern */
-  input:focus {
-    outline: none;
-    border-color: #0070f3;
-    box-shadow: 0 0 5px rgba(0, 112, 243, 0.3);
   }
   
   /* Button-Styling */
@@ -75,16 +38,6 @@
   /* Button-Hover-Effekt */
   .submitButton:hover {
     background-color: #005bb5;
-  }
-  
-  /* Link-Styling */
-  a {
-    color: #0070f3;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
   }
   
   /* Form Group Container */
