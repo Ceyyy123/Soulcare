@@ -31,7 +31,7 @@ const Journal = () => {
     router.push(`/journal?date=${formattedDate}`, undefined, { shallow: true });
   };
 
-  // Einträge vom Server holen
+  // Einträge vom Server holen  
   const fetchEntries = async (selectedDate) => {
     try {
       const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
