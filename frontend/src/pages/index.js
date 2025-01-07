@@ -99,7 +99,7 @@ const Home = () => {
                 Wachstum.
               </p>
               {isAuthenticated && (
-                <Link href={'/journal?date=${moment().format("YYYY-MM-DD")}'} passHref>
+                <Link href={'/journal'} passHref>
                   <button className="small-button">Zum Journal</button>
                 </Link>
               )}
@@ -113,7 +113,7 @@ const Home = () => {
               <p>Entdecken Sie eine Vielzahl von geführten Meditationen.</p>
               <p>
                 Ob Sie sich entspannen, besser schlafen oder Ihren Fokus
-                verbessern möchten – unsere Meditationen sind perfekt für jeden
+                verbessern möchten - unsere Meditationen sind perfekt für jeden
                 Moment des Tages.
               </p>
               {isAuthenticated && (
