@@ -28,7 +28,7 @@ const Journal = () => {
   const handleDateChange = (selectedDate) => {
     const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
     setDate(selectedDate);
-    router.push(`/journal?date=${formattedDate}`, undefined, { shallow: true });
+    router.push(`/journal?date=${formattedDate}`, { shallow: true });
   };
 
   // Einträge vom Server holen
