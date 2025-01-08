@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors()); // CORS-Problem lösen
 //app.use(express.json()); // JSON-Parsing für eingehende Anfragen
 
-// Verbindung zu MongoDB herstellen
+// Verbindung zu MongoDB herstellen 
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
