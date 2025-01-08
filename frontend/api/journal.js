@@ -1,5 +1,5 @@
 const express = require("express");
-import { connectToDatabase } from '../../lib/mongodb'; // MongoDB-Verbindung
+const connectToDatabase = require("mongodb");
 const router = express.Router();
 
 // Abrufen der Einträge
