@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require("body-parser");
 const userRoutes = require('./routes/userRoutes'); // Routen für Benutzer (Registrierung, Login)
 const journalRoutes = require('./routes/journalRoutes'); // Routen für Journal
 require('dotenv').config(); // Lädt die .env-Datei
@@ -26,9 +27,10 @@ if (!process.env.MONGO_DB_URL) {
 
 // Express-App erstellen
 const app = express();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors()); // CORS-Problem lösen
-app.use(express.json()); // JSON-Parsing für eingehende Anfragen
+//app.use(express.json()); // JSON-Parsing für eingehende Anfragen
 
 // Verbindung zu MongoDB herstellen
 mongoose
