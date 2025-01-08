@@ -9,12 +9,12 @@ require('dotenv').config(); // Lädt die .env-Datei
 const fs = require('fs');
 
 // Überprüfen, ob die .env-Datei existiert
-if (!fs.existsSync('.env')) {
+/*if (!fs.existsSync('.env')) {
   console.error('.env-Datei wurde nicht gefunden!');
   process.exit(1); // Beendet den Prozess, wenn keine .env-Datei vorhanden ist
 } else {
   console.log('Die .env-Datei existiert.');
-}
+}*/
 
 // Überprüfen, ob die Umgebungsvariable MONGO_DB_URL definiert ist
 const MONGO_URI = process.env.MONGO_DB_URL || 'mongodb://localhost:27017/soulcare';
