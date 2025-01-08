@@ -4,23 +4,29 @@
   background-color: #1a2a6c;
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Logo links, Navigation rechts */
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
+  position: sticky; /* Macht die Navbar fixiert beim Scrollen */
+  top: 0;
+  z-index: 1000; /* Immer sichtbar über anderen Inhalten */
 }
 
 .logo {
   height: 50px;
 }
 
+/* Flexbox für die Links */
 .navLinks {
   list-style: none;
   display: flex;
-  gap: 20px;
+  align-items: center; /* Zentriert die Links vertikal */
+  gap: 20px; /* Abstand zwischen den Links */
   margin: 0;
   padding: 0;
 }
 
+/* Allgemeine Stile für Links und Button */
 .navLinks a,
 .logoutButton {
   color: white;
@@ -28,7 +34,7 @@
   border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Hover-Animation */
   border: none;
   cursor: pointer;
   font-size: 16px;
@@ -38,77 +44,55 @@
 .navLinks a:hover,
 .logoutButton:hover {
   background-color: #3b4c8d; /* Hellere Farbe beim Hover */
+  transform: scale(1.05); /* Leichtes Vergrößern beim Hover */
 }
 
+/* Logout-Button */
 .logoutButton {
-  background-color: transparent;
-  border: none;
+  background-color: transparent; /* Standard kein Hintergrund */
+  border: 2px solid white; /* Leicht sichtbare Umrandung */
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
 }
 
-/* Spezielle Buttons für "Anmelden" und "Registrieren" */
-.navLinks .nav-link {
+.logoutButton:hover {
   background-color: #4b6fb0;
-  padding: 12px 25px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  border-color: #3b4c8d;
 }
 
-.navLinks .nav-link:hover {
-  background-color: #3b4c8d;
-}
-
-/* Footer */
-.footer {
-  background-color: #1a2a6c;
+/* Buttons für "Anmelden" und "Registrieren" */
+.nav-link {
+  display: inline-block; /* Damit der Button korrekt dargestellt wird */
+  background-color: #4b6fb0; /* Primärfarbe */
   color: white;
-  padding: 20px 0;
-  text-align: center;
-}
-
-.footer .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.footerSection {
-  flex: 1;
-  margin: 20px;
-  min-width: 200px;
-  text-align: center;
-}
-
-.footerLogo {
-  max-width: 80px;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.footerSection h4 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  padding: 10px 20px; /* Innenabstand */
+  border-radius: 4px; /* Abgerundete Ecken */
+  text-decoration: none; /* Keine Unterstreichung */
   font-weight: bold;
-}
-
-.footerSection ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footerSection ul li {
-  margin-bottom: 10px;
-}
-
-.footerSection ul li a {
-  color: white;
-  text-decoration: none;
   font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.footerSection ul li a:hover {
-  text-decoration: underline;
+.nav-link:hover {
+  background-color: #3b4c8d; /* Hellere Farbe beim Hover */
+  transform: scale(1.05); /* Leichtes Vergrößern */
+}
+
+/* Abmelden-Button */
+.nav-button {
+  background-color: transparent;
+  border: 2px solid white; /* Sichtbare Umrandung */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-button:hover {
+  background-color: #4b6fb0; /* Gleiche Farbe wie die anderen Buttons */
+  transform: scale(1.05);
 }

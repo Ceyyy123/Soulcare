@@ -17,27 +17,28 @@ const Navbar = () => {
     <nav className="navbar">
       <img src={logo} alt="SoulCare Logo" className="logo" />
       <ul className="navLinks">
-        {!isAuthenticated ? (
-          <>
-            <li>
-              <Link href="/login" className="nav-link">
-                Anmelden
-              </Link>
-            </li>
-            <li>
-              <Link href="/signup" className="nav-link">
-                Registrieren
-              </Link>
-            </li>
-          </>
-        ) : (
-          <li>
-            <button onClick={logout} className="nav-button logout-button">
-              Abmelden
-            </button>
-          </li>
-        )}
-      </ul>
+  {!isAuthenticated ? (
+    <>
+      <li>
+        <Link href="/login" className="nav-link">
+          Anmelden
+        </Link>
+      </li>
+      <li>
+        <Link href="/signup" className="nav-link">
+          Registrieren
+        </Link>
+      </li>
+    </>
+  ) : (
+    <li>
+      <button onClick={logout} className="nav-button">
+        Abmelden
+      </button>
+    </li>
+  )}
+</ul>
+
     </nav>
   );
 };
