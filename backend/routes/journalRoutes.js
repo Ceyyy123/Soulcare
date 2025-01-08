@@ -4,9 +4,13 @@ const router = express.Router();
 
 // GET Route zum Abrufen von Journal-Einträgen basierend auf dem Datum
 router.get('/', async (req, res) => {
+  console.log(req);
+  console.log(res);
   const { date } = req.query;
   try {
+    console.log(date);
     const entries = await Journal.find({ date: date });
+    console.log(entries);
     res.json(entries);
   } catch (error) {
     res.status(500).json({ error: 'Fehler beim Abrufen der Einträge' });
