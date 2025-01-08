@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router'; // Um nach erfolgreichem Login weiterzuleiten
-import { useAuth } from '../AuthContext'; // AuthContext für Login
-import Link from 'next/link'; // Zum Verlinken von Seiten
-import styles from '../styles/Login.module.css'; // CSS-Module für Login-Seite
+import { useRouter } from 'next/router';
+import { useAuth } from '../AuthContext';
+import Link from 'next/link';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-  const { login } = useAuth(); // Hier wird das Login aus dem AuthContext genutzt
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,24 +22,25 @@ const Login = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Fehler beim Login');
+        throw new Error('Login failed');
       }
 
       const data = await response.json();
-      localStorage.setItem('token', data.token); // Speichern des Tokens im localStorage
-      login(); // Den Authentifizierungs-Context updaten
-      router.push('/'); // Weiterleitung zur Startseite
+      localStorage.setItem('token', data.token);
+      login();
+      router.push('/');
     } catch (err) {
-      setError(err.message); // Fehlerbehandlung
+      setError(err.message);
+      console.error('Login Error:', err);
     }
   };
 
   return (
-    <div className={styles.formContainer}>
+    <div className="form-container">
       <h2>Login</h2>
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -49,8 +49,8 @@ const Login = () => {
             required
           />
         </div>
-        <div className={styles.formGroup}>
-          <label>Passwort:</label>
+        <div className="form-group">
+          <label>Password:</label>
           <input
             type="password"
             value={password}
@@ -58,10 +58,10 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" className={styles.submitButton}>Login</button>
+        <button type="submit">Login</button>
       </form>
       <p>
-        Noch kein Konto? <Link href="/signup">Registrieren</Link>
+        Don't have an account? <Link href="/signup">Sign Up</Link>
       </p>
     </div>
   );
