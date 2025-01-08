@@ -1,6 +1,6 @@
 const express = require('express');
 const Journal = require('../models/JournalEntry');
-const router = express.Router();
+const router = new express.Router();
 
 // GET Route zum Abrufen von Journal-Einträgen basierend auf dem Datum
 router.get('/journal', async (req, res) => {
