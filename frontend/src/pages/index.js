@@ -19,25 +19,26 @@ const Navbar = () => {
       <ul className="navLinks">
   {!isAuthenticated ? (
     <>
-      <li>
-        <Link href="/login" className="nav-link">
+      <li className="navItem">
+        <button onClick={() => router.push('/login')} className="nav-button">
           Anmelden
-        </Link>
+        </button>
       </li>
-      <li>
-        <Link href="/signup" className="nav-link">
+      <li className="navItem">
+        <button onClick={() => router.push('/signup')} className="nav-button">
           Registrieren
-        </Link>
+        </button>
       </li>
     </>
   ) : (
-    <li>
-      <button onClick={logout} className="nav-button">
+    <li className="navItem">
+      <button onClick={logout} className="nav-button logout-button">
         Abmelden
       </button>
     </li>
   )}
 </ul>
+
 
     </nav>
   );
