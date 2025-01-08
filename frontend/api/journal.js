@@ -1,4 +1,4 @@
-import express from '../../node_modules/express';
+const express = require("express");
 import { connectToDatabase } from '../../lib/mongodb'; // MongoDB-Verbindung
 const router = express.Router();
 
