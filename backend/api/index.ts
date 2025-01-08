@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require("body-parser");
-const userRoutes = require('./routes/userRoutes'); // Routen für Benutzer (Registrierung, Login)
-const journalRoutes = require('./routes/journalRoutes'); // Routen für Journal
+const userRoutes = require('../routes/userRoutes'); // Routen für Benutzer (Registrierung, Login)
+const journalRoutes = require('../routes/journalRoutes'); // Routen für Journal
 require('dotenv').config(); // Lädt die .env-Datei
 
 const fs = require('fs');
