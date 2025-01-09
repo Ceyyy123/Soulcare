@@ -1,11 +1,13 @@
 import React from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useAuth } from '../AuthContext';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
-  const logo = "https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp";
+  const router = useRouter();
+  const logo =
+    'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp';
 
   return (
     <nav className={styles.navbar}>
@@ -13,32 +15,31 @@ const Navbar = () => {
         <img src={logo} alt="SoulCare Logo" className={styles.logo} />
       </div>
       <ul className={styles.navLinks}>
-        {isAuthenticated ? (
+        {!isAuthenticated ? (
           <>
             <li>
-              <Link href="/journal">
-                <a className={styles.navLink}>Journal</a>
-              </Link>
+              <button
+                onClick={() => router.push('/login')}
+                className={styles.navButton}
+              >
+                Anmelden
+              </button>
             </li>
             <li>
-              <button onClick={logout} className={styles.navButton}>
-                Abmelden
+              <button
+                onClick={() => router.push('/signup')}
+                className={styles.navButton}
+              >
+                Registrieren
               </button>
             </li>
           </>
         ) : (
-          <>
-            <li>
-              <Link href="/login">
-                <a className={styles.navLink}>Anmelden</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/signup">
-                <a className={styles.navLink}>Registrieren</a>
-              </Link>
-            </li>
-          </>
+          <li>
+            <button onClick={logout} className={styles.navButton}>
+              Abmelden
+            </button>
+          </li>
         )}
       </ul>
     </nav>

@@ -17,8 +17,13 @@
 }
 
 .navLinks {
-  display: flex;
-  justify-content: flex-end; /* Buttons ganz rechts */
+  list-style: none !important; /* Entfernt alle Bullet Points */
+  display: flex; /* Elemente horizontal anordnen */
+  align-items: center;
+  gap: 20px; /* Abstand zwischen Buttons */
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end; /* Rechts ausrichten */
 }
 
 
