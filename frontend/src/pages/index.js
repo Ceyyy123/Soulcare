@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '../AuthContext';
-import Navbar from '../components/Navbar'; // Navbar wird als eigene Komponente importiert
-import Footer from '../components/Footer'; // Footer als eigene Komponente
-import styles from '../styles/Home.module.css';
+import Navbar from '../styles/Navbar'; // Navbar wird als eigene Komponente importiert
+import Footer from '../styles/Footer'; // Footer als eigene Komponente
+import styles from '../styles/globals.css';
 
 const Home = () => {
   const { isAuthenticated } = useAuth();
