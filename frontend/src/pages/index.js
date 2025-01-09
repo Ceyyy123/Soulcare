@@ -10,39 +10,6 @@ const journalImage = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664
 const meditationImage = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664329/meditation_yewnow.webp';
 const quotesImage = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664314/foto5_inaip7.png';
 
-const Navbar = () => {
-  const { isAuthenticated, logout } = useAuth();
-
-  return (
-    <nav className="navbar">
-      <img src={logo} alt="SoulCare Logo" className="logo" />
-      <ul className="navLinks">
-  {!isAuthenticated ? (
-    <>
-      <li className="navItem">
-        <button onClick={() => router.push('/login')} className="nav-button">
-          Anmelden
-        </button>
-      </li>
-      <li className="navItem">
-        <button onClick={() => router.push('/signup')} className="nav-button">
-          Registrieren
-        </button>
-      </li>
-    </>
-  ) : (
-    <li className="navItem">
-      <button onClick={logout} className="nav-button logout-button">
-        Abmelden
-      </button>
-    </li>
-  )}
-</ul>
-
-
-    </nav>
-  );
-};
 
 const Footer = () => {
   return (
