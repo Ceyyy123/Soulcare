@@ -18,17 +18,18 @@
 
 /* Entfernt Bullet Points und richtet die Buttons horizontal aus */
 .navLinks {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  list-style: none; /* Entfernt die Bullet Points */
+  display: flex; /* Links horizontal ausrichten */
+  align-items: center; /* Vertikal zentrieren */
+  gap: 20px; /* Abstand zwischen den Links */
   margin: 0;
   padding: 0;
 }
 
+
 /* Links-Styling */
 .navLink {
-  background-color: #4b6fb0;
+  background-color: #4b6fb0; /* Primärfarbe */
   color: white;
   padding: 10px 20px;
   border-radius: 4px;
@@ -38,11 +39,11 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover-Effekt für Links */
 .navLink:hover {
-  background-color: #3b4c8d;
-  transform: scale(1.05);
+  background-color: #3b4c8d; /* Hellere Farbe beim Hover */
+  transform: scale(1.05); /* Hover-Effekt */
 }
+
 
 /* Button-Styling */
 .navButton {

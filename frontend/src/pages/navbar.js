@@ -7,6 +7,8 @@ const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const logo = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp';
 
+  console.log('isAuthenticated:', isAuthenticated); // Debugging
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
@@ -16,12 +18,12 @@ const Navbar = () => {
         {!isAuthenticated ? (
           <>
             <li>
-              <Link href="/login" passHref>
+              <Link href="/login">
                 <a className={styles.navLink}>Anmelden</a>
               </Link>
             </li>
             <li>
-              <Link href="/signup" passHref>
+              <Link href="/signup">
                 <a className={styles.navLink}>Registrieren</a>
               </Link>
             </li>
@@ -29,7 +31,7 @@ const Navbar = () => {
         ) : (
           <>
             <li>
-              <Link href="/journal" passHref>
+              <Link href="/journal">
                 <a className={styles.navLink}>Journal</a>
               </Link>
             </li>
