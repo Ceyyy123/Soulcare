@@ -7,38 +7,41 @@ const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const logo = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp';
 
-  console.log('isAuthenticated:', isAuthenticated); // Debugging
-
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
         <img src={logo} alt="SoulCare Logo" className={styles.logo} />
       </div>
       <ul className={styles.navLinks}>
-        {!isAuthenticated ? (
+        <li>
+          <Link href="/" passHref>
+            <a className={styles.navLink}>Zur Startseite</a>
+          </Link>
+        </li>
+        {isAuthenticated ? (
           <>
             <li>
-              <Link href="/login">
-                <a className={styles.navLink}>Anmelden</a>
+              <Link href="/journal" passHref>
+                <a className={styles.navLink}>Journal</a>
               </Link>
             </li>
             <li>
-              <Link href="/signup">
-                <a className={styles.navLink}>Registrieren</a>
-              </Link>
+              <button onClick={logout} className={styles.logoutButton}>
+                Abmelden
+              </button>
             </li>
           </>
         ) : (
           <>
             <li>
-              <Link href="/journal">
-                <a className={styles.navLink}>Journal</a>
+              <Link href="/login" passHref>
+                <a className={styles.navLink}>Anmelden</a>
               </Link>
             </li>
             <li>
-              <button onClick={logout} className={styles.navButton}>
-                Abmelden
-              </button>
+              <Link href="/signup" passHref>
+                <a className={styles.navLink}>Registrieren</a>
+              </Link>
             </li>
           </>
         )}
