@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '../AuthContext';
-import Navbar from '../styles/Navbar'; // Navbar wird als eigene Komponente importiert
-import Footer from '../styles/Footer'; // Footer als eigene Komponente
+import Navbar from '../styles/Navbar.module.css'; // Navbar wird als eigene Komponente importiert
+import Footer from '../styles/Footer.module.css'; // Footer als eigene Komponente
 import styles from '../styles/globals.css';
 
 const Home = () => {
