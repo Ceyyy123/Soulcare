@@ -17,13 +17,11 @@
 }
 
 .navLinks {
-  list-style: none; /* Entfernt Bullet Points */
-  display: flex; /* Horizontal ausrichten */
-  align-items: center;
-  gap: 20px; /* Abstand zwischen den Links */
-  margin: 0;
-  padding: 0;
+  display: flex;
+  justify-content: flex-end; /* Buttons ganz rechts */
 }
+
+
 
 .navLink {
   background-color: #4b6fb0; /* Primärfarbe */
