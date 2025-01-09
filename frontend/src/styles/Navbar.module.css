@@ -18,17 +18,17 @@
 
 /* Flexbox für die Links */
 .navLinks {
-  list-style: none;
-  display: flex;
-  align-items: center; /* Zentriert die Links vertikal */
+  list-style: none; /* Keine Bullet Points */
+  display: flex; /* Horizontal anordnen */
+  align-items: center; /* Zentriert die Buttons vertikal */
   gap: 20px; /* Abstand zwischen den Links */
   margin: 0;
   padding: 0;
 }
 
-/* Allgemeine Stile für Links und Button */
+/* Allgemeine Stile für Links und Buttons */
 .navLinks a,
-.logoutButton {
+.nav-button {
   color: white;
   padding: 10px 20px;
   border-radius: 4px;
@@ -41,58 +41,24 @@
   display: inline-block;
 }
 
+/* Hover-Effekt für Links und Buttons */
 .navLinks a:hover,
-.logoutButton:hover {
+.nav-button:hover {
   background-color: #3b4c8d; /* Hellere Farbe beim Hover */
   transform: scale(1.05); /* Leichtes Vergrößern beim Hover */
 }
 
-/* Logout-Button */
-.logoutButton {
-  background-color: transparent; /* Standard kein Hintergrund */
-  border: 2px solid white; /* Leicht sichtbare Umrandung */
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.logoutButton:hover {
-  background-color: #4b6fb0;
-  border-color: #3b4c8d;
-}
-
-/* Buttons für "Anmelden" und "Registrieren" */
+/* Spezielle Buttons für "Anmelden" und "Registrieren" */
 .nav-link {
-  display: inline-block; /* Damit der Button korrekt dargestellt wird */
   background-color: #4b6fb0; /* Primärfarbe */
-  color: white;
-  padding: 10px 20px; /* Innenabstand */
-  border-radius: 4px; /* Abgerundete Ecken */
-  text-decoration: none; /* Keine Unterstreichung */
-  font-weight: bold;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.nav-link:hover {
-  background-color: #3b4c8d; /* Hellere Farbe beim Hover */
-  transform: scale(1.05); /* Leichtes Vergrößern */
 }
 
 /* Abmelden-Button */
 .nav-button {
   background-color: transparent;
   border: 2px solid white; /* Sichtbare Umrandung */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .nav-button:hover {
   background-color: #4b6fb0; /* Gleiche Farbe wie die anderen Buttons */
-  transform: scale(1.05);
 }
