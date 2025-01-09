@@ -1,13 +1,11 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useAuth } from '../AuthContext';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
-  const router = useRouter();
-  const logo =
-    'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp';
+  const logo = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp';
 
   return (
     <nav className={styles.navbar}>
@@ -18,28 +16,29 @@ const Navbar = () => {
         {!isAuthenticated ? (
           <>
             <li>
-              <button
-                onClick={() => router.push('/login')}
-                className={styles.navButton}
-              >
-                Anmelden
-              </button>
+              <Link href="/login" passHref>
+                <a className={styles.navLink}>Anmelden</a>
+              </Link>
             </li>
             <li>
-              <button
-                onClick={() => router.push('/signup')}
-                className={styles.navButton}
-              >
-                Registrieren
-              </button>
+              <Link href="/signup" passHref>
+                <a className={styles.navLink}>Registrieren</a>
+              </Link>
             </li>
           </>
         ) : (
-          <li>
-            <button onClick={logout} className={styles.navButton}>
-              Abmelden
-            </button>
-          </li>
+          <>
+            <li>
+              <Link href="/journal" passHref>
+                <a className={styles.navLink}>Journal</a>
+              </Link>
+            </li>
+            <li>
+              <button onClick={logout} className={styles.navButton}>
+                Abmelden
+              </button>
+            </li>
+          </>
         )}
       </ul>
     </nav>
