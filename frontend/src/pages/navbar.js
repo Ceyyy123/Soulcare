@@ -13,35 +13,31 @@ const Navbar = () => {
         <img src={logo} alt="SoulCare Logo" className={styles.logo} />
       </div>
       <ul className={styles.navLinks}>
-        <li>
-          <Link href="/" passHref>
-            <a className={styles.navLink}>Zur Startseite</a>
-          </Link>
-        </li>
-        {isAuthenticated ? (
+        
+        {!isAuthenticated ? (
           <>
             <li>
-              <Link href="/journal" passHref>
-                <a className={styles.navLink}>Journal</a>
-              </Link>
-            </li>
-            <li>
-              <button onClick={logout} className={styles.logoutButton}>
-                Abmelden
-              </button>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <Link href="/login" passHref>
+              <Link href="/login">
                 <a className={styles.navLink}>Anmelden</a>
               </Link>
             </li>
             <li>
-              <Link href="/signup" passHref>
+              <Link href="/signup">
                 <a className={styles.navLink}>Registrieren</a>
               </Link>
+            </li>
+          </>
+        ) : (
+          <>
+          <li>
+          <Link href="/" passHref>
+            <a className={styles.navLink}>Zur Startseite</a>
+          </Link>
+        </li>
+            <li>
+              <button onClick={logout} className={styles.navButton}>
+                Abmelden
+              </button>
             </li>
           </>
         )}
