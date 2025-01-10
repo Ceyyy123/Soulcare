@@ -1,5 +1,5 @@
 const express = require('express');
-const Journal = require('../models/JournalEntry'); // Pfad anpassen
+const Journal = require('../../frontend/src/models/JournalEntry'); // Pfad anpassen
 const router = express.Router();
 
 // GET Route zum Abrufen von Journal-Einträgen basierend auf dem Datum

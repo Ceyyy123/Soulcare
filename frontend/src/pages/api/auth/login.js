@@ -1,7 +1,7 @@
 import User from '../../../backend/models/User';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import connectToDatabase from '../../../backend/lib/mongodb';
+import connectToDatabase from '../../../lib/mongodb';
 
 export default async function handler(req, res) {
   await connectToDatabase();

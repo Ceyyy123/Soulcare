@@ -1,6 +1,6 @@
 import User from '../../../backend/models/User';
 import bcrypt from 'bcryptjs';
-import connectToDatabase from '../../../backend/lib/mongodb';
+import connectToDatabase from '../../../lib/mongodb';
 
 export default async function handler(req, res) {
   await connectToDatabase();
