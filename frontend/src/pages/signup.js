@@ -17,7 +17,7 @@ const handleSubmit = async (e) => {
 
   try {
     // Registrierung des Benutzers
-    const signupResponse = await fetch('/api/auth/signup', {
+    const signupResponse = await fetch('backend/api/auth/signup.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
     }
 
     // Nach der erfolgreichen Registrierung automatisch einloggen
-    const loginResponse = await fetch('/api/auth/login', {
+    const loginResponse = await fetch('backend/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
