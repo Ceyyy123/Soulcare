@@ -16,12 +16,12 @@ const fs = require('fs');
   console.log('Die .env-Datei existiert.');
 }*/
 
-// Überprüfen, ob die Umgebungsvariable MONGO_DB_URL definiert ist
-const MONGO_URI = process.env.MONGO_DB_URL || 'mongodb://localhost:27017/soulcare';
+// Überprüfen, ob die Umgebungsvariable MONGO_URL definiert ist
+const MONGO_URI = process.env.MONGO_URL || 'mongodb://localhost:27017/soulcare';
 console.log('DB_URI:', MONGO_URI);
 
-if (!process.env.MONGO_DB_URL) {
-  console.error('Fehler: Die Umgebungsvariable MONGO_DB_URL ist nicht definiert.');
+if (!process.env.MONGO_URL) {
+  console.error('Fehler: Die Umgebungsvariable MONGO_URL ist nicht definiert.');
   console.error('Verwende Standardwert: mongodb://localhost:27017/soulcare');
 }
 

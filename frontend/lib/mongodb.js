@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-const client = new MongoClient(process.env.MONGO_DB_URL);
+const client = new MongoClient(process.env.MONGO_URL);
 
 export async function connectToDatabase() {
   if (!client.isConnected()) {

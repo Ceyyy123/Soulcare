@@ -1,7 +1,9 @@
 import User from '../../models/User';
 import bcrypt from 'bcryptjs';
+import connectToDatabase from '../../lib/mongodb';
 
 export default async function handler(req, res) {
+  await connectToDatabase();
   if (req.method === 'POST') {
     const { email, password } = req.body;
 

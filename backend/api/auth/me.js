@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
 import User from '../../models/User';
+import connectToDatabase from '../../lib/mongodb';
 
 export default async function handler(req, res) {
+  await connectToDatabase();
   if (req.method === 'GET') {
     const authHeader = req.headers.authorization;
 

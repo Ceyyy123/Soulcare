@@ -156,7 +156,7 @@ const userRoutes = require('./routes/userRoutes'); // Routen für Benutzer (Regi
 const journalRoutes = require('./routes/journalRoutes'); // Routen für Journal
 require('dotenv').config(); // .env-Datei laden
 &nbsp;
-console.log('DB_URI:', process.env.MONGO_DB_URL); // Prüfen, ob der Verbindungsstring korrekt ist
+console.log('DB_URI:', process.env.MONGO_URL); // Prüfen, ob der Verbindungsstring korrekt ist
 &nbsp;
 const fs = require('fs');
 &nbsp;
@@ -173,7 +173,7 @@ app.use(cors()); // CORS-Problem lösen
 app.use(express.json());
 &nbsp;
 // Mit MongoDB verbinden
-mongoose.connect(process.env.MONGO_DB_URL, { // Verwendung von MONGO_DB_URL statt MONGO_URL
+mongoose.connect(process.env.MONGO_URL, { // Verwendung von MONGO_URL statt MONGO_URL
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() =&gt; {
