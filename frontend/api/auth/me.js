@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import User from '../../models/User';
-import connectToDatabase from '../../lib/mongodb';
+import User from '../../../backend/models/User';
+import connectToDatabase from '../../../backend/lib/mongodb';
 
 export default async function handler(req, res) {
   await connectToDatabase();

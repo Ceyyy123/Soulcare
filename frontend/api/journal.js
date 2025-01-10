@@ -1,30 +1,16 @@
-const express = require("express");
-const connectToDatabase = require("mongodb");
+const express = require('express');
 const router = express.Router();
+const Journal = require('../models/JournalEntry');
 
-// Abrufen der Einträge
-router.get('/', async (req, res) => {
+// GET Route zum Abrufen von Journal-Einträgen basierend auf dem Datum
+router.get('/', async (req, res, next) => {
   const { date } = req.query;
   try {
-    const { db } = await connectToDatabase();
-    const entries = await db.collection('journal').find({ date }).toArray();
-    res.status(200).json(entries);
+    const entries = await Journal.find({ date: date });
+    res.json(entries);
   } catch (error) {
     res.status(500).json({ error: 'Fehler beim Abrufen der Einträge' });
   }
 });
 
-// Erstellen eines neuen Eintrags
-router.post('/', async (req, res) => {
-  const { date, content } = req.body;
-  try {
-    const { db } = await connectToDatabase();
-    const newEntry = { date, content };
-    await db.collection('journal').insertOne(newEntry);
-    res.status(201).json(newEntry);
-  } catch (error) {
-    res.status(500).json({ error: 'Fehler beim Speichern des Eintrags' });
-  }
-});
-
-export default router;
+module.exports = router;
