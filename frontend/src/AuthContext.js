@@ -31,8 +31,8 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-export const registerUser = async (email, password) => {
-  const response = await fetch('http://localhost:3001/api/users/register', { 
+export const signupUser = async (email, password) => {
+  const response = await fetch('http://localhost:3001/api/users/signup', { 
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const registerUser = async (email, password) => {
   });
 
   if (!response.ok) {
-      throw new Error('Failed to register user');
+      throw new Error('Failed to signup user');
   }
 
   return true;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { registerUser } from '../authService';
+import { signupUser } from '../authService';
 import { useAuth } from '../AuthContext';
 import Link from 'next/link';
 
@@ -14,7 +14,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(email, password); // Registrierung abschließen
+      await signupUser(email, password); // Registrierung abschließen
       await login(); // Automatisch einloggen nach der Registrierung
       router.push('/');
     } catch (err) {

@@ -1,8 +1,8 @@
 // authService.js
 
 // Benutzerregistrierung
-export const registerUser = async (email, password) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/register`, {
+export const signupUser = async (email, password) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ export const registerUser = async (email, password) => {
   });
 
   if (!response.ok) {
-    throw new Error('Failed to register user');
+    throw new Error('Failed to signup user');
   }
 
   return true;

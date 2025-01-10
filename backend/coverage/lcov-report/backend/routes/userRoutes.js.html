@@ -167,7 +167,7 @@ const User = require('../models/User');
 const router = express.Router();
 &nbsp;
 // Registrierung
-router.post('/register', <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+router.post('/signup', <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
   const { email, password } = <span class="cstat-no" title="statement not covered" >req.body;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  try {</span>
@@ -177,10 +177,10 @@ router.post('/register', <span class="fstat-no" title="function not covered" >as
     const newUser = <span class="cstat-no" title="statement not covered" >new User({ email, password: hashedPassword });</span>
     // Benutzer speichern
 <span class="cstat-no" title="statement not covered" >    await newUser.save();</span>
-<span class="cstat-no" title="statement not covered" >    res.status(201).json({ message: 'User registered successfully' });</span>
+<span class="cstat-no" title="statement not covered" >    res.status(201).json({ message: 'User signuped successfully' });</span>
   } catch (error) {
 <span class="cstat-no" title="statement not covered" >    console.error("Error during registration:", error);</span>
-<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: 'Failed to register user' });</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: 'Failed to signup user' });</span>
   }
 });
 &nbsp;

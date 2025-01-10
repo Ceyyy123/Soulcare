@@ -1,5 +1,5 @@
 describe('Sign Up Functionality', () => {
-  it('should register successfully with valid credentials', () => {
+  it('should signup successfully with valid credentials', () => {
     // Besuche die Registrierungsseite
     cy.visit('/signup'); 
     

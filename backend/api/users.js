@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken'); // Für die Erstellung von JWTs
 const router = express.Router();
 
 // Benutzer-Registrierung
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
   const { email, password } = req.body;
 
   try {

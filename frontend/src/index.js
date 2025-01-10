@@ -4,16 +4,16 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
-    res.status(201).send('User registered successfully');
+    res.status(201).send('User signuped successfully');
   } catch (error) {
     console.error("Registration Error:", error); // Detaillierte Ausgabe der Fehlermeldung im Server-Log
-    res.status(500).send('Error registering new user');
+    res.status(500).send('Error signuping new user');
   }
 });
 

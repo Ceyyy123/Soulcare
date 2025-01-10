@@ -13,11 +13,11 @@ describe('User Routes', () => {
     //einmal getestet zur Registrierung
     /*it('should return 201 for user signup', async () => {
         const res = await request(app)
-            .post('/api/users/register') // Registrierungs-Endpoint
+            .post('/api/users/signup') // Registrierungs-Endpoint
             .send({ email: 'user@example.com', password: 'password123' }); // Testdaten für neuen Benutzer
     
         expect(res.statusCode).toBe(201); // Registrierung erfolgreich
-        expect(res.body).toHaveProperty('message', 'User registered successfully'); // Erwartete Antwort angepasst
+        expect(res.body).toHaveProperty('message', 'User signuped successfully'); // Erwartete Antwort angepasst
     });*/
     
 });
