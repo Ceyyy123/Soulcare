@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useAuth } from '../AuthContext';
 import '../styles/Navbar.module.css';
 import '../styles/Footer.module.css';
+import Navbar from './navbar';
 
 // Cloudinary-Links für die Bilder
 const logo = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp';
