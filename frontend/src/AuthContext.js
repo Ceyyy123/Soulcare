@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 export const signupUser = async (email, password) => {
-  const response = await fetch('http://localhost:3001/api/users/signup', { 
+  const response = await fetch('https://soulcare-mu.vercel.app/api/users/signup', { 
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
