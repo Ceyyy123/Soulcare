@@ -45,7 +45,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Navbar />
 
       <div className="container">
         <header className="header">
