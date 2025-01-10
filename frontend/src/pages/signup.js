@@ -11,17 +11,51 @@ const Signup = () => {
   const router = useRouter();
   const { login } = useAuth();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await signupUser(email, password); // Registrierung abschließen
-      await login(); // Automatisch einloggen nach der Registrierung
-      router.push('/');
-    } catch (err) {
-      setError(err.message);
-      console.error("Signup Error:", err); // Mehr Details im Fehlerfall
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+
+  try {
+    // Registrierung des Benutzers
+    const signupResponse = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!signupResponse.ok) {
+      throw new Error('Fehler bei der Registrierung');
     }
-  };
+
+    // Nach der erfolgreichen Registrierung automatisch einloggen
+    const loginResponse = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!loginResponse.ok) {
+      throw new Error('Fehler beim Login');
+    }
+
+    const loginData = await loginResponse.json();
+    const { token } = loginData;
+
+    // Token im Local Storage oder in einem Zustand speichern, um den Benutzer anzumelden
+    localStorage.setItem('token', token);
+
+    // Nach erfolgreichem Login zur Startseite weiterleiten
+    router.push('/');
+  } catch (err) {
+    setError(err.message);
+    console.error('Signup Error:', err);
+  }
+};
+
 
   return (
     <div className="form-container">
