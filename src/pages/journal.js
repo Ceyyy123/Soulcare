@@ -170,18 +170,22 @@ const Journal = () => {
         </div>
         <div className={styles.journalEntries}>
           <h2>Einträge</h2>
-          {entries.map((entry, index) => (
-            <div key={index} className={styles.journalEntry}>
-              <strong>{entry.date}</strong>
-              <p>{entry.content}</p>
-              <button 
-                onClick={() => handleDelete(entry._id)} 
-                className={styles.deleteButton}
-              >
-                Löschen
-              </button>
-            </div>
-          ))}
+          {entries.map((entry, index) => {
+            const formattedDate = moment(entry.date).format('YYYY-MM-DD'); // Datum im Format YYYY-MM-DD
+            console.log('Eintrag:', entry);  // Debugging: Überprüfen, ob die ID vorhanden ist
+            return (
+              <div key={index} className={styles.journalEntry}>
+                <strong>{formattedDate}</strong> {/* Zeige das formatierte Datum an */}
+                <p>{entry.content}</p>
+                <button 
+                  onClick={() => handleDelete(entry._id)} 
+                  className={styles.deleteButton}
+                >
+                  Löschen
+                </button>
+              </div>
+            );
+        })}
         </div>
       </div>
       <Footer />
