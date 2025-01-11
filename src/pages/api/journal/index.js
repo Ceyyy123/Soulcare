@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       });
 
       // Speichern des neuen Journal-Eintrags in der Datenbank
-      await newEntry.save();
+      const data = await newEntry.save();
 
       res.status(201).json({ message: 'Journal-Eintrag erfolgreich gespeichert.', entry: newEntry });
     } catch (error) {

@@ -89,7 +89,8 @@ const Journal = () => {
       }
 
       const data = await response.json();
-      setEntries([...entries, newEntry]);
+
+      setEntries([...entries, data.entry]);
     } catch (error) {
       console.error('Submit error:', error);
     }
