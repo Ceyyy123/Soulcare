@@ -222,19 +222,33 @@
 
 .notAuthenticated {
   text-align: center;
-  margin-top: 50px;
+  padding: 50px;
+  background-color: #f4f4f4; /* Heller Hintergrund */
 }
 
-.notAuthenticated a {
-  background-color: #1a2a6c;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  text-decoration: none;
+.notAuthenticated p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333; /* Dunkelgrauer Text */
+}
+
+.resourceButton {
+  background-color: #1e90ff; /* Schöne blaue Hintergrundfarbe */
+  color: white; /* Weißer Text */
+  padding: 12px 25px;
+  font-size: 16px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.notAuthenticated a:hover {
-  background-color: #3c6aff;
+.resourceButton:hover {
+  background-color: #0056b3; /* Etwas dunklerer Blau-Ton beim Hover */
+  transform: scale(1.05); /* Leichtes Wachsen des Buttons */
+}
+
+.resourceButton:focus {
+  outline: none; /* Verhindert den Standard-Button-Rahmen */
 }
