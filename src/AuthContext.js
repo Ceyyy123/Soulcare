@@ -31,21 +31,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-export const signupUser = async (email, password) => {
-  const response = await fetch('http://localhost:3000/api/users/signup', { 
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-  });
-
-  if (!response.ok) {
-      throw new Error('Failed to signup user');
-  }
-
-  return true;
-};
 
 
 export const useAuth = () => useContext(AuthContext);

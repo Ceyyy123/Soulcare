@@ -50,7 +50,7 @@ const handleSubmit = async (e) => {
     localStorage.setItem('token', token);*/
 // Token im Local Storage oder in einem Zustand speichern, um den Benutzer anzumelden
     // Nach erfolgreichem Login zur Startseite weiterleiten
-    router.push('/');
+    router.push('/login');
   } catch (err) {
     setError(err.message);
     console.error('Signup Error:', err);

@@ -45,7 +45,7 @@ const Home = () => {
 
   return (
     <div className="home">
-
+      <Navbar />
       <div className="container">
         <header className="header">
           <h1>Willkommen bei SoulCare</h1>
