@@ -2,93 +2,68 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
-  }
-  
-  
-.footer {
-    background-color: #1a2a6c;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  .footerSection {
-    margin-bottom: 20px;
-  }
-  
-  .footerLogo {
-    max-width: 80px;
-    height: auto;
-  }
-  
-  .getStartedLink {
-    color: #f1a59e;
-    text-decoration: none;
-  }
-  
-  .getStartedLink:hover {
-    text-decoration: underline;
-  }
-  
-  .container {
+    background-color: #f5f5f5; /* Konsolidiert von #f0f0f0 und #f5f5f5 */
+    color: #333333;
+}
+
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
+}
+
 .footer {
     background-color: #1a2a6c; /* Dunkelblau */
     color: white;
     padding: 20px 0;
     margin-top: 40px;
-  }
-  
-  .footer .container {
+    text-align: center;
+}
+
+.footer .container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .footerSection {
+}
+
+.footerSection {
     flex: 1;
     margin: 20px;
     min-width: 200px; /* Minimum width für kleine Bildschirme */
-  }
-  
-  .footerSection h4 {
+}
+
+.footerSection h4 {
     font-size: 18px;
     margin-bottom: 10px;
     font-weight: bold;
-  }
-  
-  .footerSection ul {
+}
+
+.footerSection ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .footerSection ul li {
+}
+
+.footerSection ul li {
     margin-bottom: 10px;
-  }
-  
-  .footerSection ul li a {
+}
+
+.footerSection ul li a {
     color: white;
     text-decoration: none;
     font-size: 16px;
-  }
-  
-  .footerSection ul li a:hover {
+}
+
+.footerSection ul li a:hover {
     text-decoration: underline;
-  }
-  
-  .footerLogo {
-    max-width: 100px;
+}
+
+.footerLogo {
+    max-width: 100px; /* Konsolidiert von 80px und 100px */
+    height: auto;
     margin-bottom: 10px;
-  }
-  
-  .getStartedLink {
+}
+
+.getStartedLink {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
@@ -97,20 +72,25 @@ body {
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-  }
-  
-  .footerBottom {
+}
+
+.getStartedLink:hover {
+    text-decoration: underline;
+}
+
+.footerBottom {
     text-align: center;
     padding: 10px 0;
     border-top: 1px solid #ffffff40;
     margin-top: 20px;
-  }
-  
-  .footerBottom p {
+}
+
+.footerBottom p {
     margin: 0;
     font-size: 14px;
-  }
-  .small-button {
+}
+
+.small-button {
     padding: 10px 20px;
     background-color: #004080;
     color: white;
@@ -124,26 +104,13 @@ body {
     transition: background-color 0.3s, box-shadow 0.3s;
     width: 250px; /* Feste Breite für alle Buttons */
     display: inline-block; /* Damit der Button in einer Zeile bleibt */
-  }
-  
-  .small-button:hover {
+}
+
+.small-button:hover {
     background-color: #003366;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-  }/* Allgemeines Styling für den gesamten Körper der Seite */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333333;
 }
 
-/* Allgemeines Styling für den Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Navigation-Styling */
 .navbar {
     background-color: #1a2a6c;
     color: white;
@@ -171,19 +138,18 @@ body {
     color: white;
 }
 
-/* Absatz-Styling */
 p {
     font-size: 18px; /* Größere Schriftgröße für Absätze */
     line-height: 1.6; /* Mehr Zeilenabstand */
     margin-bottom: 20px; /* Mehr Abstand zwischen den Absätzen */
 }
 
-/* Header-Styling */
 .header {
     text-align: center;
     padding: 20px 0;
     background-color: #1a2a6c;
     color: white;
+    margin-bottom: 40px; /* Abstand unterhalb des Headers */
 }
 
 .header h1 {
@@ -197,7 +163,6 @@ p {
     color: #f1a59e;
 }
 
-/* Feature-Abschnitt-Styling */
 .feature-section {
     display: flex;
     align-items: center;
@@ -221,32 +186,6 @@ p {
     font-size: 16px;
     color: #333333;
     margin: 0;
-}
-
-/* Weitere Anpassungen, um den Abstand zu den Rändern und zwischen den Absätzen zu verbessern */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.header {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #1a2a6c;
-    color: white;
-    margin-bottom: 40px; /* Abstand unterhalb des Headers */
-}
-
-.header h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.header p {
-    font-size: 18px;
-    color: #f1a59e;
 }
 
 .features {

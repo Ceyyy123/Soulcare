@@ -62,6 +62,7 @@ function Impressum() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
