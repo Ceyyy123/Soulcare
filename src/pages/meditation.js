@@ -1,13 +1,14 @@
 import React from 'react';
-import Link from 'next/link';
-import { useAuth } from '../AuthContext'; // Stelle sicher, dass der Pfad zu deiner AuthContext-Datei korrekt ist
-import Navbar from './navbar'; // Korrigierter Pfad zur Navbar-Komponente
-import Footer from './footer'; // Korrigierter Pfad zur Footer-Komponente
-import styles from '../styles/Meditation.module.css'; // Angenommen, du verwendest CSS-Module
+import Link from 'next/link';  // Importiert Link von Next.js für die Navigation zwischen Seiten
+import { useAuth } from '../AuthContext';  // Importiert den AuthContext, um den Authentifizierungsstatus zu prüfen
+import Navbar from './navbar';  // Importiert die Navbar-Komponente für die Navigation
+import Footer from './footer';  // Importiert die Footer-Komponente für den Fußbereich der Seite
+import styles from '../styles/Meditation.module.css';  // Importiert das CSS-Modul für die Seite
 
 const Meditation = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();  // Zugriff auf den Authentifizierungsstatus
 
+  // Wenn der Benutzer nicht authentifiziert ist, wird ein Login-Link angezeigt
   if (!isAuthenticated) {
     return (
       <div className={styles.loginPrompt}>
@@ -19,6 +20,7 @@ const Meditation = () => {
     );
   }
 
+  // Liste der Meditationen, die auf der Seite angezeigt werden
   const meditations = [
     {
       title: 'Entspannung - Geführte Meditation',
@@ -70,6 +72,7 @@ const Meditation = () => {
     },
   ];
 
+  // Paare von Kategorien, um die Meditationen zu gruppieren
   const categoryPairs = [
     ['Entspannung', 'Schlafen'],
     ['Stressabbau', 'Achtsamkeit'],
@@ -77,25 +80,27 @@ const Meditation = () => {
 
   return (
     <div>
-      <Navbar /> {/* Navbar-Komponente wird hier verwendet */}
+      <Navbar />  {/* Fügt die Navbar-Komponente hinzu */}
       <div className={styles.container}>
-        <h2 className={styles.heading}>Geführte Meditationen</h2>
+        <h2 className={styles.heading}>Geführte Meditationen</h2>  {/* Titel der Seite */}
         <p className={styles.description}>
           Entdecken Sie eine Sammlung geführter Meditationen zur Entspannung, zum besseren Schlaf und zum Stressabbau.
         </p>
 
+        {/* Iteriere durch die Kategorienpaare und zeige die entsprechenden Meditationen an */}
         {categoryPairs.map((pair, index) => (
           <div key={index} className={styles.categoryRow}>
             {pair.map((category) => (
               <div key={category} className={styles.categorySection}>
-                <h3 className={styles.categoryHeading}>{category}</h3>
+                <h3 className={styles.categoryHeading}>{category}</h3>  {/* Anzeige der Kategorie-Überschrift */}
                 <div className={styles.videoGrid}>
+                  {/* Filtert die Meditationen nach der Kategorie und zeigt sie an */}
                   {meditations
                     .filter((meditation) => meditation.category === category)
                     .map((meditation, idx) => (
                       <div key={idx} className={styles.videoCard}>
-                        <h4>{meditation.title}</h4>
-                        <div className={styles.video}>{meditation.video}</div>
+                        <h4>{meditation.title}</h4>  {/* Titel der Meditation */}
+                        <div className={styles.video}>{meditation.video}</div>  {/* Video der Meditation */}
                       </div>
                     ))}
                 </div>
@@ -104,9 +109,9 @@ const Meditation = () => {
           </div>
         ))}
       </div>
-      <Footer /> {/* Footer-Komponente wird hier verwendet */}
+      <Footer />  {/* Fügt die Footer-Komponente hinzu */}
     </div>
   );
 };
 
-export default Meditation;
+export default Meditation;  // Exportiert die Meditation-Komponente
