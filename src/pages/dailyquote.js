@@ -49,19 +49,19 @@ const DailyQuote = () => {
 
   return (
     <div>
-      <Navbar />  // Fügt die Navbar-Komponente oben auf der Seite ein
+      <Navbar />  {/* Fügt die Navbar-Komponente oben auf der Seite ein */}
       <div className={styles.quoteContainer}>
         <div className={styles.content}>
           <div className={styles.quoteSection}>
             <h2 className={styles.quoteText}>Inspirierendes Zitat des Tages</h2>
-            <p className={styles.quoteText}>{quote}</p>  // Zeigt das zufällig ausgewählte Zitat an
+            <p className={styles.quoteText}>{quote}</p>  {/* Zeigt das zufällig ausgewählte Zitat an*/}
           </div>
 
           <div className={styles.tipsSection}>
             <h3>Wohlfühl-Tipps des Tages</h3>
             <ul className={styles.tipsList}>
               {tips.map((tip, index) => (
-                <li key={index} className={styles.tipItem}>{tip}</li>  // Listet die täglichen Tipps auf
+                <li key={index} className={styles.tipItem}>{tip}</li>  /* Listet die täglichen Tipps auf */
               ))}
             </ul>
           </div>
@@ -69,12 +69,12 @@ const DailyQuote = () => {
           <div className={styles.additionalResources}>
             <h3>Nützliche Ressourcen</h3>
             <Link href="/usefulresources">
-              <button className={styles.resourceButton}>Zu den Ressourcen</button>  // Link zu weiteren Ressourcen
+              <button className={styles.resourceButton}>Zu den Ressourcen</button>  {/* Link zu weiteren Ressourcen*/}
             </Link>
           </div>
         </div>
       </div>
-      <Footer />  // Fügt den Footer am unteren Rand der Seite hinzu
+      <Footer />  {/* Fügt den Footer am unteren Rand der Seite hinzu*/}
     </div>
   );
 };
