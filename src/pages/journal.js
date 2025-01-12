@@ -42,7 +42,8 @@ const Journal = () => {
     const fetchEntries = async () => {
       try {
         // Formatierte Datum für die API-Abfrage
-        const formattedDate = date.toISOString().split('T')[0];
+        //const formattedDate = date.toISOString().split('T')[0];
+        const formattedDate = moment(date).format('YYYY-MM-DD');
 
         const response = await fetch(`/api/journal?date=${formattedDate}`, {
           method: 'GET',
