@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     // Entpackt die E-Mail und das Passwort aus der Anfrage
     const { email, password } = req.body;
-
+    
     // Überprüft, ob sowohl E-Mail als auch Passwort übermittelt wurden
     if (!email || !password) {
       return res.status(400).json({ error: 'Email und Passwort sind erforderlich.' });
