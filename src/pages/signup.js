@@ -11,7 +11,6 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();  // Initialisiert den Router, um nach der Registrierung weiterzuleiten
-  const { login } = useAuth();  // Destrukturiert die login-Funktion aus dem AuthContext, um den Benutzer nach der Registrierung anzumelden
 
   // Formular-Handler für die Registrierung
   const handleSubmit = async (e) => {
@@ -31,24 +30,6 @@ const Signup = () => {
         throw new Error('Fehler bei der Registrierung');  // Fehler werfen, wenn die Registrierung nicht erfolgreich war
       }
       
-      // Falls der Benutzer registriert ist, können wir optional einen Login-Prozess ausführen
-      /*const loginResponse = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!loginResponse.ok) {
-        throw new Error('Fehler beim Login');
-      }
-
-      const loginData = await loginResponse.json();
-      const { token } = loginData;
-
-      // Speichern des Tokens im LocalStorage oder in einem Zustand
-      localStorage.setItem('token', token);*/
 
       // Weiterleitung zur Login-Seite nach erfolgreicher Registrierung
       router.push('/login');
