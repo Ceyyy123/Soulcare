@@ -1,74 +1,124 @@
-import jwt from "jsonwebtoken";  // Importiert jwt, falls du das Token für die Authentifizierung verwenden möchtest
-import React, { useState } from 'react';  // Importiert React und useState für Zustandsverwaltung
-import { useRouter } from 'next/router';  // Importiert useRouter für die Navigation
-import { signupUser } from '../authService';  // Importiert eine Funktion zum Registrieren (wird hier nicht genutzt, aber könnte nützlich sein)
-import { useAuth } from '../AuthContext';  // Importiert useAuth, um die Authentifizierung zu verwalten
-import Link from 'next/link';  // Importiert Link von Next.js für die Navigation
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Signup = () => {
-  // Zustände für Email, Passwort und Fehlernachrichten
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const router = useRouter();  // Initialisiert den Router, um nach der Registrierung weiterzuleiten
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [wantMail, setWantMail] = useState(false);
+  const [notificationTimes, setNotificationTimes] = useState(["07:00", "19:00"]);
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  // Formular-Handler für die Registrierung
+  const handleTimeChange = (index, value) => {
+    let newTimes = [...notificationTimes];
+    newTimes[index] = value;
+
+    // Zeiten in Stunden umwandeln
+    const [h1, m1] = newTimes[0].split(":").map(Number);
+    const [h2, m2] = newTimes[1].split(":").map(Number);
+    const timeDiff = Math.abs((h1 + m1 / 60) - (h2 + m2 / 60));
+
+    if (timeDiff !== 12) {
+      setError("Die Zeiten müssen genau 12 Stunden auseinander liegen!");
+    } else {
+      setError("");
+    }
+
+    setNotificationTimes(newTimes);
+  };
+
   const handleSubmit = async (e) => {
-    e.preventDefault();  // Verhindert das Standard-Verhalten des Formulars, um die Seite nicht neu zu laden
-  
+    e.preventDefault();
+
+    if (error) {
+      alert(error);
+      return;
+    }
+
+    const userData = {
+      email,
+      password,
+      wantMail,
+      notificationTimes: wantMail ? notificationTimes : undefined,
+    };
+
     try {
-      // Registrierung des Benutzers über eine API-Anfrage
-      const signupResponse = await fetch('/api/auth/signup', {
-        method: 'POST',
+      const signupResponse = await fetch("/api/auth/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',  // Setzt den Content-Type des Requests auf JSON
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),  // Schickt die Email und das Passwort im Request-Body
+        body: JSON.stringify(userData),
       });
 
       if (!signupResponse.ok) {
-        throw new Error('Fehler bei der Registrierung');  // Fehler werfen, wenn die Registrierung nicht erfolgreich war
+        throw new Error("Fehler bei der Registrierung");
       }
-      
 
-      // Weiterleitung zur Login-Seite nach erfolgreicher Registrierung
-      router.push('/login');
+      router.push("/login");
     } catch (err) {
-      setError(err.message);  // Fehlernachricht im State speichern, wenn etwas schiefgeht
-      console.error('Signup Error:', err);  // Fehler in der Konsole protokollieren
+      setError(err.message);
+      console.error("Signup Error:", err);
     }
   };
 
   return (
     <div className="form-container">
       <h2>Sign Up</h2>
-      {error && <p className="error">{error}</p>}  {/* Zeigt die Fehlernachricht an, wenn ein Fehler auftritt */}
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
-            value={email}  // Bindet die Email-Eingabe an den Zustand
-            onChange={(e) => setEmail(e.target.value)}  // Aktualisiert den Zustand, wenn die E-Mail eingegeben wird
-            required  // Stellt sicher, dass das Feld ausgefüllt wird
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
           <label>Password:</label>
           <input
             type="password"
-            value={password}  // Bindet das Passwort an den Zustand
-            onChange={(e) => setPassword(e.target.value)}  // Aktualisiert den Zustand, wenn das Passwort eingegeben wird
-            required  // Stellt sicher, dass das Feld ausgefüllt wird
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
-        <button type="submit">Sign Up</button>  {/* Der Button zum Absenden des Formulars */}
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={wantMail}
+              onChange={() => setWantMail(!wantMail)}
+            />
+            Erinnerungen per E-Mail erhalten?
+          </label>
+        </div>
+        {wantMail && (
+          <div className="form-group">
+            <label>Erinnerungszeiten (müssen 12h auseinander liegen):</label>
+            <input
+              type="time"
+              value={notificationTimes[0]}
+              onChange={(e) => handleTimeChange(0, e.target.value)}
+            />
+            <input
+              type="time"
+              value={notificationTimes[1]}
+              onChange={(e) => handleTimeChange(1, e.target.value)}
+            />
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
+        )}
+        <button type="submit">Sign Up</button>
       </form>
       <p>
-        Already have an account? <Link href="/login">Login</Link>  {/* Link zur Login-Seite für bereits registrierte Benutzer */}
+        Already have an account? <Link href="/login">Login</Link>
       </p>
     </div>
   );
 };
 
-export default Signup;  // Exportiert die Signup-Komponente
+export default Signup;

@@ -5,6 +5,7 @@ import '../styles/Navbar.module.css';
 import '../styles/Footer.module.css';
 import Navbar from './navbar';
 
+
 const logo = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664324/logo_vaabnz.webp';
 const journalImage = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664319/journal_dltwpb.webp';
 const meditationImage = 'https://res.cloudinary.com/dwla3jvrl/image/upload/v1735664329/meditation_yewnow.webp';

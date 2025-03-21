@@ -1,22 +1,40 @@
-// Importiert mongoose, um mit der MongoDB-Datenbank zu interagieren
 import mongoose from "mongoose";
 
-// Definiere das User-Schema, das die Struktur für die User-Daten festlegt
 const userSchema = new mongoose.Schema({
   email: { 
-    type: String,  // Speichert die E-Mail des Benutzers als String
-    required: true,  // Stellt sicher, dass die E-Mail ein Pflichtfeld ist
-    unique: true  // Stellt sicher, dass jede E-Mail nur einmal in der Datenbank vorhanden ist
+    type: String,  
+    required: true,  
+    unique: true  
   },
   password: { 
-    type: String,  // Speichert das Passwort des Benutzers als String (wird normalerweise gehasht gespeichert)
-    required: true  // Stellt sicher, dass das Passwort ein Pflichtfeld ist
+    type: String,  
+    required: true  
   },
+  wantMail: { 
+    type: Boolean, 
+    default: false 
+  },
+  notificationTimes: {
+    type: [String], 
+    default: undefined, // Falls wantMail false ist, bleibt es leer
+    validate: {
+      validator: function (times) {
+        if (!this.wantMail) return true; // Wenn wantMail false ist, dann keine Prüfung
+        if (!times || times.length !== 2) return false; // Es müssen genau 2 Zeiten sein
+
+        // Zeiten in Stunden umwandeln
+        const [time1, time2] = times.map((time) => {
+          const [hours, minutes] = time.split(":").map(Number);
+          return hours + minutes / 60;
+        });
+
+        return Math.abs(time1 - time2) === 12; // Prüft, ob genau 12 Stunden Unterschied sind
+      },
+      message: "Die beiden Zeiten müssen genau 12 Stunden auseinander liegen."
+    },
+  }
 });
 
-// Erstelle das Mongoose-Modell und exportiere es
-// Wenn das Modell bereits existiert, wird es nicht erneut erstellt
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
-// Exportiert das User-Modell, damit es in anderen Teilen der Anwendung verwendet werden kann
 export default User;

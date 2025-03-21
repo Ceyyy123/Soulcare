@@ -5,31 +5,52 @@ const jwt = require('jsonwebtoken'); // Für die Erstellung von JWTs (JSON Web T
 const router = express.Router();  // Router-Instanz von Express
 
 // Benutzer-Registrierung
+// Benutzer-Registrierung
 router.post('/signup', async (req, res) => {
-  const { email, password } = req.body; // Extrahiert E-Mail und Passwort aus der Anfrage
+  const { email, password, wantMail, notificationTimes } = req.body; // Neu: wantMail & notificationTimes
 
   try {
     // Überprüfen, ob der Benutzer bereits existiert
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      // Wenn der Benutzer bereits existiert, wird ein Fehler zurückgegeben
       return res.status(400).json({ error: 'Benutzer existiert bereits' });
     }
 
-    // Passwort hashen: Sichere Speicherung des Passworts
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 ist die Anzahl der Salting-Runden
+    // Passwort hashen
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Wenn wantMail true ist, müssen genau zwei gültige Zeiten gesetzt sein
+    if (wantMail) {
+      if (!notificationTimes || notificationTimes.length !== 2) {
+        return res.status(400).json({ error: 'Bitte genau zwei Zeiten auswählen.' });
+      }
+
+      // Zeiten in Stunden umwandeln
+      const [time1, time2] = notificationTimes.map((time) => {
+        const [hours, minutes] = time.split(":").map(Number);
+        return hours + minutes / 60;
+      });
+
+      if (Math.abs(time1 - time2) !== 12) {
+        return res.status(400).json({ error: 'Die Zeiten müssen genau 12 Stunden auseinander liegen.' });
+      }
+    }
 
     // Neuen Benutzer erstellen
-    const newUser = new User({ email, password: hashedPassword });
-    await newUser.save(); // Speichert den neuen Benutzer in der Datenbank
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+      wantMail: wantMail || false, // Falls nicht gesetzt, standardmäßig false
+      notificationTimes: wantMail ? notificationTimes : undefined // Wird nur gespeichert, wenn wantMail true ist
+    });
 
-    // Erfolgreiche Registrierung: Erfolgsnachricht zurückgeben
+    await newUser.save();
     res.status(201).json({ message: 'Benutzer erfolgreich registriert' });
   } catch (error) {
-    // Fehlerbehandlung bei der Registrierung
     res.status(500).json({ error: 'Fehler bei der Registrierung des Benutzers' });
   }
 });
+
 
 // Benutzer-Login
 router.post('/login', async (req, res) => {
