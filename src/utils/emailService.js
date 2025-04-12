@@ -1,40 +1,29 @@
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
+const { Resend } = require("resend");
 
-dotenv.config();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
-// 📩 Funktion zum Senden einer personalisierten E-Mail
-export const sendNotificationEmail = async (to, time) => {
+// Mail-Funktion
+const sendNotificationEmail = async (to, time) => {
   try {
-    const mailOptions = {
-      from: `"SoulCare Team" <${process.env.EMAIL_USER}>`,
+    const response = await resend.emails.send({
+      from: process.env.EMAIL_FROM, // z.B. onboarding@resend.dev
       to,
       subject: "Deine tägliche SoulCare-Erinnerung",
       html: `
-  <div style="font-family: Arial, sans-serif; padding: 20px;">
-    <h2 style="color: #333;">Zeit für deine Reflexion!</h2>
-    <p>Hallo,</p>
-    <p>Dies ist eine kleine Erinnerung, dass es jetzt <strong>${time}</strong> ist und du dir einen Moment für dich selbst nehmen kannst.</p>
-    <p>Bleib achtsam,</p>
-    <p style="color: #5e9c76;">💚 Dein SoulCare Team</p>
-  </div>
-`,
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2 style="color: #333;">Zeit für deine Reflexion!</h2>
+          <p>Hallo,</p>
+          <p>Dies ist eine kleine Erinnerung, dass es jetzt <strong>${time}</strong> ist und du dir einen Moment für dich selbst nehmen kannst.</p>
+          <p>Bleib achtsam,</p>
+          <p style="color: #5e9c76;">💚 Dein SoulCare Team</p>
+        </div>
+      `,
+    });
 
-    };
-
-    await transporter.sendMail(mailOptions);
-    console.log(`E-Mail erfolgreich an ${to} um ${time} gesendet.`);
+    console.log("E-Mail gesendet:", response);
   } catch (error) {
-    console.error(`Fehler beim Senden der E-Mail an ${to}:`, error);
+    console.error("Fehler beim Senden der E-Mail:", error);
   }
 };
+
+module.exports = { sendNotificationEmail };
