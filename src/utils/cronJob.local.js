@@ -1,3 +1,6 @@
+// Hinweis: Dieser CronJob ist nur für lokale Tests gedacht. 
+// Wird auf Vercel nicht ausgeführt, da Vercel keine Hintergrundjobs unterstützt.
+
 const cron = require("node-cron");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
