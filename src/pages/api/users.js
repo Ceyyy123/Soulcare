@@ -7,8 +7,9 @@ const router = express.Router();  // Router-Instanz von Express
 // Benutzer-Registrierung
 // Benutzer-Registrierung
 router.post('/signup', async (req, res) => {
+  
   const { email, password, wantMail, notificationTimes } = req.body; // Neu: wantMail & notificationTimes
-
+  console.log(wantMail);
   try {
     // Überprüfen, ob der Benutzer bereits existiert
     const existingUser = await User.findOne({ email });

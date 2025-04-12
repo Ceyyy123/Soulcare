@@ -21,14 +21,15 @@ export const sendNotificationEmail = async (to, time) => {
       to,
       subject: "Deine tägliche SoulCare-Erinnerung",
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4;">
-          <h2> Zeit für deine Reflexion!</h2>
-          <p>Hallo,</p>
-          <p>Dies ist eine kleine Erinnerung, dass es jetzt <strong>${time}</strong> ist und du dir einen Moment für dich selbst nehmen kannst. 🧘‍♀️</p>
-          <p>Bleib achtsam,</p>
-          <p>💚 Dein SoulCare Team</p>
-        </div>
-      `,
+  <div style="font-family: Arial, sans-serif; padding: 20px;">
+    <h2 style="color: #333;">Zeit für deine Reflexion!</h2>
+    <p>Hallo,</p>
+    <p>Dies ist eine kleine Erinnerung, dass es jetzt <strong>${time}</strong> ist und du dir einen Moment für dich selbst nehmen kannst.</p>
+    <p>Bleib achtsam,</p>
+    <p style="color: #5e9c76;">💚 Dein SoulCare Team</p>
+  </div>
+`,
+
     };
 
     await transporter.sendMail(mailOptions);

@@ -11,15 +11,16 @@ const Signup = () => {
   const router = useRouter();
 
   const handleTimeChange = (index, value) => {
-    let newTimes = [...notificationTimes];
+    const newTimes = [...notificationTimes];
     newTimes[index] = value;
 
     // Zeiten in Stunden umwandeln
     const [h1, m1] = newTimes[0].split(":").map(Number);
     const [h2, m2] = newTimes[1].split(":").map(Number);
     const timeDiff = Math.abs((h1 + m1 / 60) - (h2 + m2 / 60));
+    const rounded = Math.round(timeDiff * 100) / 100;
 
-    if (timeDiff !== 12) {
+    if (rounded !== 12) {
       setError("Die Zeiten müssen genau 12 Stunden auseinander liegen!");
     } else {
       setError("");
@@ -53,8 +54,11 @@ const Signup = () => {
       });
 
       if (!signupResponse.ok) {
-        throw new Error("Fehler bei der Registrierung");
+        const errorMessage = await signupResponse.json();
+        console.error("Serverfehler:", errorMessage);
+        throw new Error(errorMessage.error || "Fehler bei der Registrierung");
       }
+      
 
       router.push("/login");
     } catch (err) {
