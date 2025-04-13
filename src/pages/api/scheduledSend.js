@@ -1,4 +1,3 @@
-// api/scheduledSend.js
 import { sendNotificationEmail } from '../../utils/emailService';
 import dbConnect from '../../utils/dbConnect';
 import User from '../../models/User';
@@ -9,18 +8,24 @@ export default async function handler(req, res) {
       // Verbindung zur DB herstellen
       await dbConnect();
 
-      // Hol die Benutzer, die E-Mails erhalten möchten
+      // Hole die Benutzer, die E-Mails erhalten möchten
       const users = await User.find({ wantMail: true });
 
       // Iteriere durch die Benutzer und sende die Benachrichtigungs-E-Mails
       for (const user of users) {
         const { email, notificationTimes } = user;
 
-        // Sende die E-Mail für jede Zeit, die in der DB gespeichert ist
-        notificationTimes.forEach(async (time) => {
-          // Logik für den Versand zur festgelegten Zeit, z. B. Mit Cron oder setTimeout
-          await sendNotificationEmail(email, time, 'Deine tägliche Erinnerung');
-        });
+        // Hole die aktuelle Zeit
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        const currentTime = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
+
+        // Überprüfe, ob die aktuelle Zeit mit den Benachrichtigungszeiten übereinstimmt
+        if (notificationTimes.includes(currentTime)) {
+          console.log(`Sende E-Mail an ${email} für Zeit: ${currentTime}`);
+          await sendNotificationEmail(email, currentTime, 'Deine tägliche Erinnerung');
+        }
       }
 
       res.status(200).json({ message: 'E-Mails erfolgreich gesendet!' });

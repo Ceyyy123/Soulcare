@@ -1,15 +1,14 @@
-name: Cron Job to Send Notifications
+name: Schedule Send Emails
 
 on:
   schedule:
-    # Dies stellt sicher, dass der Cron-Job jede Stunde ausgeführt wird
-    - cron: '0 * * * *'  # Jede Stunde
-  workflow_dispatch: # Damit du den Job auch manuell auslösen kannst
+    - cron: '*/1 * * * *'  # Alle 1 Minute
 
 jobs:
-  send-email:
+  send_emails:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Trigger API to send email
-        run: |
-          curl -X GET "https://dein-vercel-projekt-url/api/sendNotifications"
+    - name: Trigger Vercel API
+      run: |
+        curl -X GET https://soulcare-mu.vercel.app/api/sendNotifications  # Ersetze mit deiner tatsächlichen URL
