@@ -1,6 +1,6 @@
-// pages/api/scheduledSend.js
 import dbConnect from '../../utils/dbConnect.js';
 import { sendNotificationEmail } from '../../utils/emailService.js';
+import User from '../../models/User.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -8,18 +8,33 @@ export default async function handler(req, res) {
   }
 
   try {
-    console.log('Sofortiger Testversand gestartet');
+    console.log('scheduledSend gestartet');
 
     await dbConnect();
-    console.log('Datenbank verbunden');
+    console.log('DB verbunden');
 
-    // TEST: Mail direkt senden – ohne Bedingungen
-    await sendNotificationEmail("soulcare.organisation@gmx.at", "JETZT", "Testmail vom Live-System");
-    console.log('Testmail erfolgreich gesendet');
+    const users = await User.find({ wantMail: true });
+    const now = new Date();
+    const currentTime = now.toTimeString().slice(0, 5); // "HH:MM"
 
-    return res.status(200).json({ message: "Testmail gesendet" });
+    console.log('Aktuelle Zeit:', currentTime);
+    console.log('Gefundene Benutzer:', users.length);
+
+    for (const user of users) {
+      const { email, notificationTimes } = user;
+
+      console.log(`→ Prüfe ${email}`);
+      if (notificationTimes.includes(currentTime)) {
+        console.log(`Zeit stimmt überein, sende Mail an ${email}`);
+        await sendNotificationEmail(email, currentTime, 'Deine tägliche Erinnerung');
+      } else {
+        console.log(`${email}: Keine Übereinstimmung`);
+      }
+    }
+
+    return res.status(200).json({ message: 'E-Mails geprüft und ggf. gesendet.' });
   } catch (err) {
-    console.error('Fehler beim Mailversand:', err.message);
+    console.error('Fehler in scheduledSend:', err.message);
     return res.status(500).json({ message: 'Fehler beim Senden', error: err.message });
   }
 }
