@@ -1,9 +1,7 @@
-
 {
-    "version": 2,
     "functions": {
       "api/sendNotifications.js": {
-        "schedule": "*/1 * * * *" 
+        "schedule": "*/1 * * * *"
       }
     }
   }

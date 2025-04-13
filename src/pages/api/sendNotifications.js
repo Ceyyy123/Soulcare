@@ -1,28 +1,24 @@
-import { sendNotificationEmail } from '../../utils/emailService'; // Deine E-Mail-Funktion
-import dbConnect from '../../utils/dbConnect'; // Deine Funktion zum Verbinden mit der DB
-import User from '../../models/User'; // Dein Mongoose Modell für den User
+import { sendNotificationEmail } from '../../utils/emailService';
+import dbConnect from '../../utils/dbConnect';
+import User from '../../models/User';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      // Stelle eine Verbindung zur Datenbank her
+      // Verbindung zur Datenbank herstellen
       await dbConnect();
 
-      // Hole die Benutzer, die E-Mails erhalten möchten
+      // Hol die Benutzer, die E-Mails erhalten möchten
       const users = await User.find({ wantMail: true });
 
       // Iteriere durch die Benutzer und sende die Benachrichtigungs-E-Mails
       for (const user of users) {
         const { email, notificationTimes } = user;
 
-        // Vergleiche die aktuelle Zeit mit den gespeicherten Benachrichtigungszeiten
-        const now = new Date();
-        const currentTime = now.getHours().toString().padStart(2, "0") + ':' + now.getMinutes().toString().padStart(2, "0");
-
-        // Sende die E-Mail, wenn die gespeicherte Zeit mit der aktuellen Zeit übereinstimmt
-        if (notificationTimes.includes(currentTime)) {
-          await sendNotificationEmail(email, currentTime, 'Deine tägliche Erinnerung');
-        }
+        // Sende die E-Mail für jede Zeit, die in der DB gespeichert ist
+        notificationTimes.forEach(async (time) => {
+          await sendNotificationEmail(email, time, 'Deine tägliche Erinnerung');
+        });
       }
 
       res.status(200).json({ message: 'E-Mails erfolgreich gesendet!' });
