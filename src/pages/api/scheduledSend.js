@@ -12,12 +12,16 @@ export default async function handler(req, res) {
     await dbConnect();
 
     const users = await User.find({ wantMail: true });
-
     const now = new Date();
-    const currentTime = now.toTimeString().slice(0, 5); // HH:MM – lokale Zeit
+    const currentTime = now.toTimeString().slice(0, 5); // lokale Zeit im Format HH:MM
 
+    console.log('scheduledSend wurde aufgerufen');
     console.log('Aktuelle lokale Zeit:', currentTime);
-    console.log('Benutzeranzahl:', users.length);
+    console.log('Benutzer aus DB geladen:', users.length);
+
+    if (users.length === 0) {
+      console.log('Keine Benutzer mit wantMail: true gefunden');
+    }
 
     for (const user of users) {
       const { email, notificationTimes } = user;
@@ -25,13 +29,13 @@ export default async function handler(req, res) {
       console.log('---');
       console.log('Benutzer:', email);
       console.log('Gespeicherte Zeiten:', notificationTimes);
-      console.log('Verglichen mit aktueller Zeit:', currentTime);
+      console.log('Aktuelle Zeit:', currentTime);
 
       if (notificationTimes.includes(currentTime)) {
-        console.log('Zeit stimmt überein. E-Mail wird gesendet.');
+        console.log('Zeit stimmt überein. E-Mail wird gesendet an', email);
         await sendNotificationEmail(email, currentTime);
       } else {
-        console.log('Zeit stimmt nicht überein. Keine E-Mail gesendet.');
+        console.log('Zeit stimmt nicht überein.');
       }
     }
 
