@@ -1,34 +1,28 @@
 import nodemailer from 'nodemailer';
-import postmark from 'postmark';
 
-// Erstelle den Postmark Transporter
-const client = new postmark.ServerClient(process.env.POSTMARK_API_KEY);
+// SMTP-Transporter für Gmail
+const transporter = nodemailer.createTransport({
+  service: 'gmail',  // Gmail SMTP
+  auth: {
+    user: process.env.EMAIL_USER,  // Deine Gmail-Adresse
+    pass: process.env.EMAIL_PASS,  // Dein App-Passwort für Gmail (nicht das normale Gmail-Passwort)
+  },
+});
 
-// Funktion zum Senden der E-Mail
+// Funktion zum Senden von E-Mails
 export const sendNotificationEmail = async (to, time, subject) => {
-  // Logge die Daten, die gesendet werden
-  console.log(`Sende E-Mail an: ${to}, mit der Zeit: ${time}, Betreff: ${subject}`);
-
-  // Postmark E-Mail-Inhalt
-  const message = {
-    From: 'sim210485@spengergasse.at',  // Deine verifizierte Postmark-E-Mail-Adresse
-    To: to,                         // Empfänger-E-Mail-Adresse
-    Subject: subject || 'Deine tägliche SoulCare-Erinnerung',  // Betreff
-    HtmlBody: `<div style="font-family: Arial, sans-serif; padding: 20px;">
-                 <h2 style="color: #333;">Zeit für deine Reflexion!</h2>
-                 <p>Hallo,</p>
-                 <p>Dies ist eine Erinnerung, dass es jetzt <strong>${time}</strong> ist und du dir einen Moment für dich selbst nehmen kannst.</p>
-                 <p>Bleib achtsam,</p>
-                 <p style="color: #5e9c76;">💚 Dein SoulCare Team</p>
-               </div>`, // HTML-Inhalt
-    TextBody: `Dies ist eine Erinnerung: Es ist jetzt ${time}.`, // Text-Inhalt (für E-Mail-Clients, die keine HTML-E-Mails unterstützen)
+  const mailOptions = {
+    from: process.env.GMAIL_USER,  // Deine Gmail-Adresse
+    to: to,  // Empfänger-E-Mail-Adresse
+    subject: subject || 'Deine tägliche Erinnerung',  // Betreff
+    text: `Dies ist eine Erinnerung: Es ist jetzt ${time}.`,  // Text-Inhalt
   };
 
   try {
-    const info = await client.sendEmail(message);
-    console.log('E-Mail erfolgreich gesendet:', info);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('E-Mail erfolgreich gesendet:', info.response);
   } catch (error) {
     console.error('Fehler beim Senden der E-Mail:', error);
-    throw error;  // Werfe den Fehler weiter, falls etwas schiefgeht
+    throw error;
   }
 };
