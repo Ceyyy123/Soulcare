@@ -10,39 +10,46 @@ export default async function handler(req, res) {
   try {
     console.log('🔁 scheduledSend gestartet');
 
+    // Datenbankverbindung
     await dbConnect();
-    console.log('✅ DB verbunden');
+    console.log('✅ Datenbank erfolgreich verbunden');
 
-    const users = await User.find({ wantMail: true });
-
-    // Aktuelle Zeit in deutscher Lokalzeit (UTC+2)
+    // Aktuelle Zeit in deutscher Lokalzeit (UTC+2), korrekt begrenzt auf 24h
     const now = new Date();
-    const offset = 2; // UTC+2 (Sommerzeit, Deutschland)
-    const localHours = (now.getUTCHours() + offset).toString().padStart(2, '0');
+    const offset = 2; // UTC+2 Sommerzeit
+    const localHours = ((now.getUTCHours() + offset) % 24).toString().padStart(2, '0');
     const minutes = now.getUTCMinutes().toString().padStart(2, '0');
     const currentTime = `${localHours}:${minutes}`;
 
-    console.log('🕒 Lokale Zeit:', currentTime);
-    console.log('👥 Benutzer mit wantMail=true:', users.length);
+    console.log('🕒 Lokale Zeit (UTC+2):', currentTime);
 
+    // Benutzer abrufen
+    const users = await User.find({ wantMail: true });
+    console.log('👥 Gefundene Benutzer:', users.length);
+
+    // Alle Benutzer prüfen
     for (const user of users) {
       const { email, notificationTimes } = user;
 
-      console.log(`→ Prüfe ${email}`);
-      console.log('→ Erwartete Zeiten:', notificationTimes);
+      console.log(`📩 Prüfe Benutzer: ${email}`);
+      console.log('⏰ Benachrichtigungszeiten:', notificationTimes);
 
+      // Zeitvergleich (getrimmt)
       if (notificationTimes.map(t => t.trim()).includes(currentTime.trim())) {
-        console.log(`✅ Zeit stimmt überein (${currentTime}), sende Mail an ${email}`);
+        console.log(`✅ Übereinstimmung: ${currentTime}, sende Mail an ${email}`);
+
         await sendNotificationEmail(email, currentTime, 'Deine tägliche Erinnerung');
-        console.log(`📨 Mail an ${email} erfolgreich gesendet`);
+
+        console.log(`📨 Mail erfolgreich gesendet an ${email}`);
       } else {
-        console.log(`⏭ ${email}: Keine Übereinstimmung (${currentTime} nicht in ${notificationTimes})`);
+        console.log(`⏭ Keine Übereinstimmung (${currentTime} nicht in ${notificationTimes})`);
       }
     }
 
-    return res.status(200).json({ message: 'E-Mails geprüft und ggf. gesendet.' });
+    return res.status(200).json({ message: 'E-Mails wurden geprüft und ggf. versendet.' });
+
   } catch (err) {
-    console.error('❌ Fehler in scheduledSend:', err.message);
-    return res.status(500).json({ message: 'Fehler beim Senden', error: err.message });
+    console.error('❌ Fehler beim E-Mail-Versand:', err);
+    return res.status(500).json({ message: 'Fehler beim E-Mail-Versand', error: err.message });
   }
 }
