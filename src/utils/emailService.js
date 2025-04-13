@@ -16,7 +16,7 @@ export const sendNotificationEmail = async (to, time, subject = 'Deine tägliche
     from: `"SoulCare" <${process.env.EMAIL_USER}>`,
     to,
     subject,
-    text: `Hallo,\ndas ist deine Erinnerung: Es ist jetzt ${time}.`,
+    text: `Hallo,dies ist deine persönliche Erinnerung von SoulCare. Es ist jetzt ${time} Uhr, ein guter Moment, um kurz innezuhalten und dir etwas Gutes zu tun. Bleib achtsam und nimm dir Zeit für dich. Dein SoulCare-Team <3`,
   };
 
   try {
