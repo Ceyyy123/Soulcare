@@ -2,7 +2,7 @@ name: Schedule Send Emails
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Alle 1 Minute
+    - cron: '*/1 * * * *'  
 
 jobs:
   send_emails:
@@ -11,4 +11,4 @@ jobs:
     steps:
     - name: Trigger Vercel API
       run: |
-        curl -X GET https://soulcare-mu.vercel.app/api/sendNotifications  # Ersetze mit deiner tatsächlichen URL
+        curl -X GET https://soulcare-mu.vercel.app/api/sendNotifications
