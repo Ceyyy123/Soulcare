@@ -1,6 +1,12 @@
-import { sendNotificationEmail } from '../../utils/emailService';
-import dbConnect from '../../utils/dbConnect';
-import User from '../../models/User';
+// Importiere deine nötigen Dateien
+import { sendNotificationEmail } from '../../utils/emailService'; 
+import dbConnect from '../../utils/dbConnect';  
+import User from '../../models/User';  
+require('dotenv').config();  // Stelle sicher, dass Umgebungsvariablen geladen werden
+
+// Dein API-Key von der Cronjob-Website aus der .env-Datei holen
+const cronJobApiKey = process.env.CRONJOB_API_KEY;
+const cronJobApiUrl = `https://api.cron-job.org/${cronJobApiKey}/trigger`;
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
@@ -27,6 +33,17 @@ export default async function handler(req, res) {
           await sendNotificationEmail(email, currentTime, 'Deine tägliche Erinnerung');
         }
       }
+
+      // Cronjob API aufrufen
+      const fetch = require('node-fetch');
+      fetch(cronJobApiUrl)
+        .then(response => response.json())
+        .then(data => {
+          console.log("Cronjob erfolgreich ausgeführt:", data);
+        })
+        .catch(error => {
+          console.error("Fehler beim Ausführen des Cronjobs:", error);
+        });
 
       res.status(200).json({ message: 'E-Mails erfolgreich gesendet!' });
     } catch (error) {
