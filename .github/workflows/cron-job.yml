@@ -1,13 +1,13 @@
-name: Cron E-Mail Scheduler
+name: SoulCare Cronjob
 
 on:
   schedule:
     - cron: '*/1 * * * *' # jede Minute
-  workflow_dispatch:      # manuelles Auslösen über GitHub
+  workflow_dispatch:       # zum manuellen Ausführen
 
 jobs:
-  trigger-vercel-api:
+  ping-vercel-api:
     runs-on: ubuntu-latest
     steps:
-      - name: Anfrage an Vercel-API senden
-        run: curl -s -o /dev/null -w "%{http_code}" https://soulcare-mu.vercel.app/api/scheduledSend
+      - name: Request to scheduledSend
+        run: curl -s https://soulcare-mu.vercel.app/api/scheduledSend
