@@ -8,23 +8,27 @@ const Signup = () => {
   const [wantMail, setWantMail] = useState(false);
   const [notificationTimes, setNotificationTimes] = useState(["07:00", "19:00"]);
   const [error, setError] = useState("");       // allgemeiner Fehler (z. B. von Server)
-  const [timeError, setTimeError] = useState(""); // spezieller Zeitfehler
   const router = useRouter();
 
   const handleTimeChange = (index, value) => {
     const newTimes = [...notificationTimes];
     newTimes[index] = value;
 
-    // Differenz berechnen
+    // Berechne die Differenz zwischen den beiden Zeiten
     const [h1, m1] = newTimes[0].split(":").map(Number);
-    const [h2, m2] = newTimes[1].split(":").map(Number);
-    const diff = Math.abs((h1 + m1 / 60) - (h2 + m2 / 60));
-    const rounded = Math.round(diff * 100) / 100;
+    let [h2, m2] = newTimes[1].split(":").map(Number);
 
-    if (rounded !== 12) {
-      setTimeError("Die Zeiten müssen genau 12 Stunden auseinander liegen!");
-    } else {
-      setTimeError("");
+    // Wenn die erste Zeit geändert wird, berechne automatisch die zweite Zeit
+    if (index === 0) {
+      const newTime = new Date();
+      newTime.setHours(h1);
+      newTime.setMinutes(m1);
+
+      // Addiere 12 Stunden zur ersten Zeit
+      newTime.setHours(newTime.getHours() + 12);
+
+      // Setze die zweite Zeit automatisch
+      newTimes[1] = `${newTime.getHours().toString().padStart(2, "0")}:${newTime.getMinutes().toString().padStart(2, "0")}`;
     }
 
     setNotificationTimes(newTimes);
@@ -34,10 +38,6 @@ const Signup = () => {
     e.preventDefault();
 
     // Zeitprüfung
-    if (timeError) {
-      return;
-    }
-
     const userData = {
       email,
       password,
@@ -115,11 +115,8 @@ const Signup = () => {
             <input
               type="time"
               value={notificationTimes[1]}
-              onChange={(e) => handleTimeChange(1, e.target.value)}
+              disabled
             />
-
-            {/* Nur dieser Fehler hier unten */}
-            {timeError && <p style={{ color: "red" }}>{timeError}</p>}
           </div>
         )}
 
